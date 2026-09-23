@@ -34,7 +34,10 @@ jobs:
         run: npm run build
 
       - name: Publicar la versión editorial aprobada
-        run: cp static-site/index.html out/index.html
+        run: cat static-site/chunks/index.part-* > out/index.html
+
+      - name: Verificar integridad de la portada
+        run: echo "32bcb042c7be97167271803bee04adba64ad5ca14b76c233fb0d83401d940b71  out/index.html" | sha256sum --check
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5

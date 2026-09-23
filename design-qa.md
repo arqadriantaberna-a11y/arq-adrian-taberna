@@ -3,8 +3,8 @@
 ## Reference
 
 - Authoritative visual source: `Arq_Adrian_Taberna_Web_v8 (6).html` supplied by Adrián.
-- Published homepage source: `static-site/index.html`.
-- Both files have the identical SHA-256 checksum: `32bcb042c7be97167271803bee04adba64ad5ca14b76c233fb0d83401d940b71`.
+- Published homepage source: the ordered files in `static-site/chunks/`, reconstructed during deployment.
+- The reconstructed homepage and the approved file have the identical SHA-256 checksum: `32bcb042c7be97167271803bee04adba64ad5ca14b76c233fb0d83401d940b71`.
 
 ## Checks
 
