@@ -14,14 +14,26 @@ const panels = [
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [onHero, setOnHero] = useState(false);
+
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  useEffect(() => {
+    const update = () => {
+      const hero = document.querySelector<HTMLElement>(".hero");
+      setOnHero(Boolean(hero && window.scrollY < hero.offsetHeight - 100));
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
   return (
     <>
-      <header className="site-header">
+      <header className={`site-header ${onHero && !open ? "on-hero" : ""}`}>
         <Link className="brand" href="/">Adrián Taberna · Arquitecto</Link>
         <button className={`menu-button ${open ? "is-open" : ""}`} type="button" aria-expanded={open} aria-label={open ? "Cerrar menú" : "Abrir menú"} onClick={() => setOpen((value) => !value)}>
           <i /><i /><i />
