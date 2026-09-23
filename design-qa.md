@@ -2,21 +2,20 @@
 
 ## Reference
 
-- Visual source: recovered `Arq_Adrian_Taberna_Web_v8.html`.
-- Comparison viewport: 1363 × 936 px.
-- Target traits: cinematic full-height hero, centered restrained typography, three-column architecture archive, light furniture catalogue, editorial newsletter, and visual full-screen navigation.
+- Authoritative visual source: `Arq_Adrian_Taberna_Web_v8 (6).html` supplied by Adrián.
+- Published homepage source: `static-site/index.html`.
+- Both files have the identical SHA-256 checksum: `32bcb042c7be97167271803bee04adba64ad5ca14b76c233fb0d83401d940b71`.
 
 ## Checks
 
-- Hero fills the viewport and preserves centered title, metadata, project link, statement, arrows, and pagination dots.
-- Header is transparent over the hero and changes to the paper surface after scrolling.
-- Architecture and furniture archives use distinct presentation systems.
-- Full-screen menu opens, locks body scroll, and exposes the four visual panels.
-- Project detail route loads correctly and preserves the long-form editorial sequence.
-- All published images resolve after lazy loading.
-- Desktop viewport has no horizontal overflow.
-- Responsive rules collapse archives, editorial grids, profile, newsletter, and footer to one column below 680 px without changing desktop proportions.
-- Production and GitHub Pages static builds complete successfully.
+- The approved HTML is published byte-for-byte as the GitHub Pages homepage; there is no visual reinterpretation layer.
+- Hero carousel, arrows, pagination dots, navigation state and centered typography are preserved.
+- Full-screen visual menu and anchor navigation are preserved.
+- Architecture case files retain their alternating editorial compositions, technical drawings and full-width images.
+- Furniture keeps its separate catalogue and dialog presentation logic.
+- Newsletter, profile, experience, contact form and footer remain unchanged.
+- Embedded image assets eliminate external-path and loading mismatches.
+- Desktop and mobile media queries are the original approved rules.
 
 ## Result
 
