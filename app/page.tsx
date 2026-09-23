@@ -3,6 +3,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import SiteHeader from "@/components/SiteHeader";
 import { furniture, projects } from "@/lib/content";
+import { assetPath } from "@/lib/site-path";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
           <div className="project-list">
             {projects.map((project, index) => (
               <Link className="project-card" href={`/proyectos/${project.slug}`} key={project.slug}>
-                <div className="project-card-media"><Image src={project.cover} alt={project.title} fill sizes="(max-width: 760px) 100vw, 75vw" /></div>
+                <div className="project-card-media"><Image src={assetPath(project.cover)} alt={project.title} fill sizes="(max-width: 760px) 100vw, 75vw" /></div>
                 <div className="project-card-info"><span>{String(index + 1).padStart(2, "0")}</span><h3>{project.title}</h3><p>{project.category} · {project.status}</p></div>
               </Link>
             ))}
@@ -33,7 +34,7 @@ export default function Home() {
           <div className="furniture-grid section-shell">
             {furniture.map((piece) => (
               <Link className="furniture-card" href={`/mobiliario/${piece.slug}`} key={piece.slug}>
-                <div className="furniture-media"><Image src={piece.cover} alt={piece.title} fill sizes="(max-width: 700px) 100vw, 50vw" /></div>
+                <div className="furniture-media"><Image src={assetPath(piece.cover)} alt={piece.title} fill sizes="(max-width: 700px) 100vw, 50vw" /></div>
                 <h3>{piece.title}</h3><small>{piece.type}</small>
               </Link>
             ))}
@@ -46,7 +47,7 @@ export default function Home() {
         </section>
 
         <section className="studio section-shell" id="estudio">
-          <div className="portrait"><Image src="/images/adrian-taberna-retrato.webp" alt="Retrato de Adrián Taberna" fill sizes="(max-width: 760px) 100vw, 42vw" /></div>
+          <div className="portrait"><Image src={assetPath("/images/adrian-taberna-retrato.webp")} alt="Retrato de Adrián Taberna" fill sizes="(max-width: 760px) 100vw, 42vw" /></div>
           <div className="studio-copy"><span className="eyebrow">Estudio</span><h2>Mirada proyectual y capacidad de ejecución.</h2><p>Soy arquitecto y trabajo entre el diseño, la documentación y la producción. Mi experiencia en obra y mobiliario me permite tomar decisiones atendiendo tanto a la calidad espacial como a su resolución concreta.</p><ul><li>Buenos Aires · Argentina</li><li>Matrícula profesional 33.852</li><li>Arquitectura · Documentación · Mobiliario</li></ul></div>
         </section>
       </main>

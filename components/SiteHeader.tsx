@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { assetPath } from "@/lib/site-path";
 
 const panels = [
   { href: "/#arquitectura", title: "Arquitectura", note: "Proyectos", image: "/images/habitar-umbral-exterior.webp" },
@@ -37,7 +38,7 @@ export default function SiteHeader() {
         <nav className="menu-panels" aria-label="Secciones principales">
           {panels.map((panel) => (
             <Link href={panel.href} className={`menu-panel ${panel.contain ? "is-contain" : ""}`} key={panel.title} onClick={() => setOpen(false)}>
-              <Image src={panel.image} alt="" fill sizes="(max-width: 680px) 100vw, 25vw" />
+              <Image src={assetPath(panel.image)} alt="" fill sizes="(max-width: 680px) 100vw, 25vw" />
               <span>{panel.title}</span><small>{panel.note}</small>
             </Link>
           ))}
