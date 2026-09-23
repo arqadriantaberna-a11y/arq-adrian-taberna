@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
 
+const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+const repositoryBasePath = "/arq-adrian-taberna";
+
 const nextConfig: NextConfig = {
-  images: { formats: ["image/avif", "image/webp"] },
+  output: "export",
+  trailingSlash: true,
+  basePath: isGitHubPages ? repositoryBasePath : "",
+  assetPrefix: isGitHubPages ? repositoryBasePath : "",
+  images: {
+    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
+  },
 };
 
 export default nextConfig;
