@@ -15,6 +15,9 @@ create table if not exists public.portfolio_items (
 
 alter table public.portfolio_items enable row level security;
 
+grant select on public.portfolio_items to anon, authenticated;
+grant insert, update, delete on public.portfolio_items to authenticated;
+
 create policy "Public items" on public.portfolio_items
   for select to anon, authenticated using (published);
 
