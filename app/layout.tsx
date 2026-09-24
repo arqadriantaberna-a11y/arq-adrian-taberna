@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://arq-adrian-taberna.com"),
+  metadataBase: new URL("https://arqadriantaberna-a11y.github.io/arq-adrian-taberna/"),
   title: { default: "Adrián Taberna · Arquitecto", template: "%s · Adrián Taberna" },
   description: "Arquitectura, documentación técnica y diseño de mobiliario en Buenos Aires.",
   openGraph: {
