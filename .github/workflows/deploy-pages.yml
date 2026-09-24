@@ -39,6 +39,9 @@ jobs:
       - name: Verificar integridad de la portada
         run: echo "32bcb042c7be97167271803bee04adba64ad5ca14b76c233fb0d83401d940b71  out/index.html" | sha256sum --check
 
+      - name: Incorporar Objetos de diseño
+        run: node scripts/inject-objects.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
