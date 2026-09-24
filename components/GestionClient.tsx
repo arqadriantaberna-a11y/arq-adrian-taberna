@@ -12,6 +12,16 @@ const blankItem = (): Item => ({ id: "", kind: "architecture", slug: "", title: 
 
 type Notice = { tone: "error" | "success" | "neutral"; text: string } | null;
 
+function authMessage(code: string, description = "") {
+  if (/rate.limit|too.many|email.send/i.test(`${code} ${description}`))
+    return "Supabase limitó temporalmente el envío de correos. No pidas otro enlace por ahora; probá con el último correo recibido.";
+  if (/expired|invalid|used/i.test(`${code} ${description}`))
+    return "Ese enlace ya venció o fue usado. Los enlaces sirven una sola vez; cuando se habilite el envío, pedí uno nuevo y abrí sólo el más reciente.";
+  if (/pkce|verifier|flow.state/i.test(`${code} ${description}`))
+    return "El correo se abrió en otro navegador. Abrí el enlace en el mismo navegador donde solicitaste el acceso.";
+  return `No se pudo iniciar sesión (${code || "error desconocido"}). ${description}`.trim();
+}
+
 export default function GestionClient() {
   const supabase = useMemo(() => getSupabaseBrowserClient(), []);
   const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || FALLBACK_ADMIN_EMAIL;
@@ -32,11 +42,36 @@ export default function GestionClient() {
     }
 
     let active = true;
+    const search = new URLSearchParams(window.location.search);
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const callbackError = search.get("error_code") || fragment.get("error_code") || search.get("error") || fragment.get("error");
+    const callbackDescription = search.get("error_description") || fragment.get("error_description") || "";
+    // Capture before the SDK initializes: it may clean the fragment on startup.
+    const fallbackAccessToken = fragment.get("access_token");
+    const fallbackRefreshToken = fragment.get("refresh_token");
 
-    supabase.auth.getSession().then(({ data }) => {
+    if (callbackError) {
+      setNotice({ tone: "error", text: authMessage(callbackError, callbackDescription.replace(/\+/g, " ")) });
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+
+    supabase.auth.getSession().then(async ({ data, error }) => {
       if (!active) return;
-      setSession(data.session);
+      let nextSession = data.session;
+      if (!nextSession && fallbackAccessToken && fallbackRefreshToken) {
+        const recovered = await supabase.auth.setSession({ access_token: fallbackAccessToken, refresh_token: fallbackRefreshToken });
+        nextSession = recovered.data.session;
+        if (recovered.error && active) setNotice({ tone: "error", text: authMessage(recovered.error.code || "sesión", recovered.error.message) });
+      }
+      if (!active) return;
+      setSession(nextSession);
       setChecking(false);
+      if (error) setNotice({ tone: "error", text: authMessage(error.code || "sesión", error.message) });
+      if (nextSession && window.location.hash) window.history.replaceState(null, "", window.location.pathname);
+    }).catch(() => {
+      if (!active) return;
+      setChecking(false);
+      setNotice({ tone: "error", text: "No se pudo comprobar la sesión. Recargá esta página una vez." });
     });
 
     const { data } = supabase.auth.onAuthStateChange((_event, nextSession) => {
@@ -109,11 +144,9 @@ export default function GestionClient() {
     });
 
     setBusy(false);
-    setNotice(
-      error
-        ? { tone: "error", text: "No pudimos enviar el acceso. Probá nuevamente en unos minutos." }
-        : { tone: "success", text: "Te enviamos un enlace privado. Abrilo desde tu correo para entrar." },
-    );
+    setNotice(error
+      ? { tone: "error", text: authMessage(error.code || String(error.status || "envío"), error.message) }
+      : { tone: "success", text: "Te enviamos un enlace privado. Abrí el más reciente desde tu correo para entrar." });
   }
 
   async function signOut() {
