@@ -13,7 +13,7 @@ const blankItem = (): Item => ({ id: "", kind: "architecture", slug: "", title: 
 type Notice = { tone: "error" | "success" | "neutral"; text: string } | null;
 
 function authMessage(code: string, description = "") {
-  if (/rate.limit|too.many|email.send/i.test(`${code} ${description}`))
+  if (/rate.limit|too.many|^429$/i.test(`${code} ${description}`) || code === "429")
     return "Supabase limitó temporalmente el envío de correos. No pidas otro enlace por ahora; probá con el último correo recibido.";
   if (/expired|invalid|used/i.test(`${code} ${description}`))
     return "Ese enlace ya venció o fue usado. Los enlaces sirven una sola vez; cuando se habilite el envío, pedí uno nuevo y abrí sólo el más reciente.";
