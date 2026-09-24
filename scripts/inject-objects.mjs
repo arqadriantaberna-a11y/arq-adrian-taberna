@@ -4,6 +4,7 @@ const pagePath = "out/index.html";
 const page = readFileSync(pagePath, "utf8");
 const section = readFileSync("static-site/objects-section.html", "utf8");
 const styles = readFileSync("static-site/objects-section.css", "utf8");
+const gallery = readFileSync("static-site/objects-gallery.js", "utf8");
 
 function replaceOnce(source, before, after) {
   const first = source.indexOf(before);
@@ -29,6 +30,7 @@ result = replaceOnce(result,
 result = replaceOnce(result,
   '"Diseño de mobiliario","Coordinación de producción"',
   '"Diseño de mobiliario","Diseño de objetos","Coordinación de producción"');
+result = replaceOnce(result, '</body>', `<script>\n${gallery}\n</script>\n</body>`);
 
 writeFileSync(pagePath, result);
 console.log("Objetos de diseño incorporados a la portada y a ambos menús.");
