@@ -6,6 +6,8 @@ const section = readFileSync("static-site/objects-section.html", "utf8");
 const styles = readFileSync("static-site/objects-section.css", "utf8");
 const gallery = readFileSync("static-site/objects-gallery.js", "utf8");
 const refinements = readFileSync("static-site/portfolio-refinements.js", "utf8");
+const habitarProcess = readFileSync("static-site/habitar-process.html", "utf8");
+const habitarStyles = readFileSync("static-site/habitar-process.css", "utf8");
 
 function replaceOnce(source, before, after) {
   const first = source.indexOf(before);
@@ -17,7 +19,7 @@ function replaceOnce(source, before, after) {
 
 if (page.includes('id="objetos"')) throw new Error("La sección ya fue insertada");
 
-let result = replaceOnce(page, "  </style>", `\n${styles}\n  </style>`);
+let result = replaceOnce(page, "  </style>", `\n${styles}\n${habitarStyles}\n  </style>`);
 result = replaceOnce(result, '  <section class="notebook" id="cuaderno"', `${section}\n  <section class="notebook" id="cuaderno"`);
 result = replaceOnce(result,
   '<div class="nav-submenu"><a href="#mobiliario">Mobiliario</a><a href="#mobiliario">A medida</a>',
@@ -60,6 +62,14 @@ result = replaceOnce(result,
 result = replaceOnce(result,
   "title:'Habitar el Umbral',lead:'Vivienda colectiva · La Reja'",
   "title:'Habitar el Umbral',lead:'Proyecto académico · Vivienda colectiva · La Reja'");
+
+// Autoría y proceso de Habitar el Umbral.
+result = replaceOnce(result,
+  '<div class="datum"><small>Autoría</small><span>Adrián Taberna + Axel Staino</span></div>',
+  '<div class="datum"><small>Autoría</small><span>Adrián Taberna</span></div>');
+result = replaceOnce(result,
+  '<div class="story-item"><small>Objetivo</small><p>Construir un gradiente entre ciudad, comunidad y vivienda donde compartir y producir formen parte del habitar.</p></div>\n            </div>\n            <div class="technical-grid">',
+  `<div class="story-item"><small>Objetivo</small><p>Construir un gradiente entre ciudad, comunidad y vivienda donde compartir y producir formen parte del habitar.</p></div>\n            </div>\n${habitarProcess}\n            <div class="technical-grid">`);
 
 // Perfil basado en experiencia profesional comprobada.
 result = replaceOnce(result,

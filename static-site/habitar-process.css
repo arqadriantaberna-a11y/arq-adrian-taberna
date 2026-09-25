@@ -1,0 +1,59 @@
+.habitar-process {
+  margin: 4rem 0;
+}
+
+.habitar-process-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(15rem, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.habitar-process-grid figure {
+  margin: 0;
+}
+
+.habitar-process-sketch {
+  grid-column: 1;
+}
+
+.habitar-process-model {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.habitar-process-media {
+  overflow: hidden;
+  background: #e9e5dc;
+}
+
+.habitar-process-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.habitar-process-grid figcaption {
+  margin-top: .65rem;
+  color: var(--muted, #6b665e);
+  font-size: .75rem;
+  line-height: 1.45;
+  letter-spacing: .04em;
+}
+
+@media (max-width: 760px) {
+  .habitar-process {
+    margin: 3rem 0;
+  }
+
+  .habitar-process-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .habitar-process-sketch,
+  .habitar-process-model {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
