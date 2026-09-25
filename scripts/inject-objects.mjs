@@ -45,6 +45,21 @@ result = replaceOnce(result,
 result = replaceOnce(result,
   '<div class="project-tag">Vivienda colectiva · Proyecto académico</div>',
   '<div class="project-tag">Proyecto académico · Vivienda colectiva</div>');
+result = replaceOnce(result,
+  '<p class="hero-lead">Vivienda unifamiliar · 244,80 m²</p>',
+  '<p class="hero-lead">Proyecto conceptual · Vivienda unifamiliar · 244,80 m²</p>');
+result = replaceOnce(result,
+  "title:'Casa Patio',lead:'Vivienda unifamiliar · 244,80 m²'",
+  "title:'Casa Patio',lead:'Proyecto conceptual · Vivienda unifamiliar · 244,80 m²'");
+result = replaceOnce(result,
+  "title:'Centro Ambulatorio',lead:'Arquitectura para la salud · 1.980 m²'",
+  "title:'Centro Ambulatorio',lead:'Proyecto conceptual · Arquitectura para la salud · 1.980 m²'");
+result = replaceOnce(result,
+  "title:'Torre Residencial',lead:'Vivienda multifamiliar · Densidad urbana'",
+  "title:'Torre Residencial',lead:'Proyecto conceptual · Vivienda multifamiliar · Densidad urbana'");
+result = replaceOnce(result,
+  "title:'Habitar el Umbral',lead:'Vivienda colectiva · La Reja'",
+  "title:'Habitar el Umbral',lead:'Proyecto académico · Vivienda colectiva · La Reja'");
 
 // Perfil basado en experiencia profesional comprobada.
 result = replaceOnce(result,
