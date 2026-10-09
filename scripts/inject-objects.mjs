@@ -8,6 +8,7 @@ const gallery = readFileSync("static-site/objects-gallery.js", "utf8");
 const refinements = readFileSync("static-site/portfolio-refinements.js", "utf8");
 const habitarProcess = readFileSync("static-site/habitar-process.html", "utf8");
 const habitarStyles = readFileSync("static-site/habitar-process.css", "utf8");
+const mobileStyles = readFileSync("static-site/mobile-only.css", "utf8");
 
 function replaceOnce(source, before, after) {
   const first = source.indexOf(before);
@@ -19,7 +20,7 @@ function replaceOnce(source, before, after) {
 
 if (page.includes('id="objetos"')) throw new Error("La sección ya fue insertada");
 
-let result = replaceOnce(page, "  </style>", `\n${styles}\n${habitarStyles}\n  </style>`);
+let result = replaceOnce(page, "  </style>", `\n${styles}\n${habitarStyles}\n${mobileStyles}\n  </style>`);
 result = replaceOnce(result, '  <section class="notebook" id="cuaderno"', `${section}\n  <section class="notebook" id="cuaderno"`);
 result = replaceOnce(result,
   '<div class="nav-submenu"><a href="#mobiliario">Mobiliario</a><a href="#mobiliario">A medida</a>',

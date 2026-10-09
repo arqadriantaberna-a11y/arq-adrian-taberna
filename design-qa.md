@@ -2,21 +2,25 @@
 
 ## Reference
 
-- Authoritative visual source: `Arq_Adrian_Taberna_Web_v8 (6).html` supplied by Adrián.
-- Published homepage source: the ordered files in `static-site/chunks/`, reconstructed during deployment.
-- The reconstructed homepage and the approved file have the identical SHA-256 checksum: `32bcb042c7be97167271803bee04adba64ad5ca14b76c233fb0d83401d940b71`.
+- Authoritative desktop source: the approved editorial homepage reconstructed from `static-site/chunks/`.
+- Public target: GitHub Pages at `https://arqadriantaberna-a11y.github.io/arq-adrian-taberna/`.
+- Desktop design remains untouched; the refinement layer is scoped entirely to `@media (max-width: 760px)`.
 
-## Checks
+## Mobile audit addressed
 
-- The approved HTML is published byte-for-byte as the GitHub Pages homepage; there is no visual reinterpretation layer.
-- Hero carousel, arrows, pagination dots, navigation state and centered typography are preserved.
-- Full-screen visual menu and anchor navigation are preserved.
-- Architecture case files retain their alternating editorial compositions, technical drawings and full-width images.
-- Furniture keeps its separate catalogue and dialog presentation logic.
-- Newsletter, profile, experience, contact form and footer remain unchanged.
-- Embedded image assets eliminate external-path and loading mismatches.
-- Desktop and mobile media queries are the original approved rules.
+- Removed horizontal overflow and constrained long headings, links and project metadata.
+- Rebuilt the phone menu as a compact full-screen index while keeping all destinations available.
+- Balanced hero typography, controls, pagination and safe vertical spacing for small screens.
+- Normalized one-column architecture cards and expanded case studies.
+- Kept technical drawings, furniture and object images fully visible instead of cropped.
+- Made furniture/object dialogs fit the dynamic mobile viewport with touch-sized controls.
+- Stacked newsletter, profile, experience and contact layouts without changing their desktop grids.
+- Preserved native details/dialog semantics and 16 px form input sizing.
+
+## Desktop protection
+
+Every selector in `static-site/mobile-only.css` lives inside a max-width media query. No base or desktop declaration was changed.
 
 ## Result
 
-Final result: passed.
+Mobile refinement prepared for 390–430 px phones; desktop presentation preserved.
