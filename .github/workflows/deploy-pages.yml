@@ -45,6 +45,9 @@ jobs:
       - name: Enlazar segundo artículo del Newsletter
         run: node scripts/link-second-newsletter.mjs
 
+      - name: Enlazar tercer artículo del Newsletter
+        run: node scripts/link-third-newsletter.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
