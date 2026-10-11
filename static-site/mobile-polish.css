@@ -1,682 +1,592 @@
 /*
- * Refinamiento editorial exclusivamente móvil.
- * Esta capa no modifica absolutamente nada por encima de 760 px.
+ * V2 móvil — rediseño editorial visible.
+ * IMPORTANTE: absolutamente todas las reglas viven dentro de max-width:760px.
+ * Desktop queda intacto.
  */
 @media (max-width: 760px) {
   :root {
-    --m-gutter: 22px;
-    --m-space: 92px;
-    --m-rule: rgba(37, 34, 31, .22);
+    --m-gutter: 20px;
+    --m-paper: #f2efe9;
+    --m-ink: #171512;
+    --m-muted: #777068;
+    --m-line: rgba(23,21,18,.22);
+    --m-accent: #a64b32;
   }
 
-  html {
-    scroll-padding-top: 68px;
-  }
+  html { scroll-padding-top: 70px; }
+  body { text-rendering: optimizeLegibility; background: var(--m-paper); }
+  .shell { width: calc(100% - (var(--m-gutter) * 2)); }
 
-  body {
-    text-rendering: optimizeLegibility;
-  }
-
-  .shell {
-    width: calc(100% - (var(--m-gutter) * 2));
-  }
-
-  /* Navegación: más limpia y con el mismo carácter editorial del escritorio. */
-  .nav-inner {
-    height: 68px;
-  }
-
+  /* NAV — más precisa y silenciosa */
+  .nav-inner { height: 70px; gap: 14px; }
   .brand {
-    max-width: 205px;
-    font-size: .64rem;
-    line-height: 1.3;
-    letter-spacing: .19em;
+    max-width: 215px;
+    font-size: .62rem;
+    line-height: 1.35;
+    letter-spacing: .20em;
   }
-
   .mobile-menu > summary {
-    width: 44px;
-    height: 44px;
-    margin-right: -7px;
+    width: 46px;
+    height: 46px;
+    margin-right: -9px;
   }
-
   .mobile-panel,
   .mobile-menu[open] .mobile-panel {
-    padding: 86px var(--m-gutter) max(26px, env(safe-area-inset-bottom));
-    background: #f5f1e8;
+    padding: 90px var(--m-gutter) max(30px, env(safe-area-inset-bottom));
+    background: var(--m-paper);
   }
-
   .menu-index {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 26px 24px;
-    padding: 0 0 30px;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 28px 22px;
+    padding-bottom: 34px;
   }
-
   .mobile-panel .menu-search {
-    grid-column: 1 / -1;
+    grid-column: 1/-1;
     margin: 0;
-    padding: 0 0 16px;
-    border-bottom: 1px solid var(--m-rule);
+    padding: 0 0 15px;
+    border-bottom: 1px solid var(--m-line);
+    font-size: .58rem;
+    letter-spacing: .18em;
   }
-
-  .menu-index-group {
-    display: block;
-    padding: 0;
-    border: 0;
-  }
-
+  .menu-index-group { display:block; padding:0; border:0; }
   .menu-index-group small {
-    display: block;
-    margin: 0 0 11px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: .78rem;
-    line-height: 1.2;
-    letter-spacing: .1em;
+    display:block;
+    margin:0 0 10px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:.9rem;
+    letter-spacing:.04em;
   }
-
   .menu-index-group a {
-    display: block;
-    min-height: 0;
-    padding: 4px 0;
-    color: #6f6861;
-    font-size: .57rem;
-    line-height: 1.45;
-    letter-spacing: .14em;
+    display:block;
+    min-height:0;
+    padding:4px 0;
+    font-size:.57rem;
+    line-height:1.5;
+    letter-spacing:.14em;
+    color:#686159;
   }
-
-  /* Recupera la dimensión visual del menú de escritorio en formato carrusel táctil. */
   .menu-visual-grid {
-    display: grid;
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(74%, 1fr);
-    grid-auto-rows: auto;
-    gap: 12px;
-    min-height: 0;
-    margin: 6px calc(var(--m-gutter) * -1) 0;
-    padding: 0 var(--m-gutter) 10px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+    display:grid;
+    grid-template-columns:none;
+    grid-auto-flow:column;
+    grid-auto-columns:82%;
+    gap:12px;
+    margin:4px calc(var(--m-gutter) * -1) 0;
+    padding:0 var(--m-gutter) 12px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
   }
-
-  .menu-visual-grid::-webkit-scrollbar {
-    display: none;
-  }
-
+  .menu-visual-grid::-webkit-scrollbar { display:none; }
   .mobile-panel .menu-visual-card {
-    aspect-ratio: 4 / 5;
-    min-height: 0;
-    scroll-snap-align: start;
-    border-radius: 0;
+    aspect-ratio:4/5;
+    min-height:0;
+    scroll-snap-align:center;
   }
-
   .menu-visual-card span {
-    top: 16px;
-    left: 16px;
-    font-size: .9rem;
+    top:18px;
+    left:18px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:1.15rem;
+    letter-spacing:0;
   }
 
-  .menu-visual-card em {
-    right: 16px;
-    bottom: 15px;
-  }
-
-  /* Hero: conserva la calma del desktop, con mejor lectura y respiración móvil. */
+  /* HERO — cambio evidente: composición editorial inferior izquierda */
   .hero,
+  .hero-inner { min-height:100svh; }
   .hero-inner {
-    min-height: 100svh;
+    justify-content:flex-end;
+    align-items:flex-start;
+    padding:110px var(--m-gutter) max(76px,calc(58px + env(safe-area-inset-bottom)));
   }
-
-  .hero-inner {
-    padding-top: 98px;
-    padding-bottom: max(42px, calc(26px + env(safe-area-inset-bottom)));
-    justify-content: flex-end;
-  }
-
   .hero-media:after {
-    background:
-      linear-gradient(180deg, rgba(18, 15, 12, .18) 0%, rgba(18, 15, 12, .02) 38%, rgba(18, 15, 12, .68) 100%);
+    background:linear-gradient(180deg,rgba(10,8,7,.10) 0%,rgba(10,8,7,.03) 38%,rgba(10,8,7,.76) 100%);
   }
-
   .hero-copy {
-    width: min(100%, 340px);
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
+    width:min(88vw,355px);
+    margin:0;
+    padding:0;
+    text-align:left;
   }
-
   .hero h1 {
-    font-size: clamp(1.08rem, 5vw, 1.34rem);
-    line-height: 1.2;
-    letter-spacing: .2em;
-    text-transform: uppercase;
+    margin:0;
+    font-family:Georgia,"Times New Roman",serif;
+    font-weight:400;
+    font-size:clamp(2.45rem,12vw,3.4rem);
+    line-height:.94;
+    letter-spacing:-.045em;
+    text-transform:none;
+    text-wrap:balance;
   }
-
-  .hero-bottom {
-    margin-top: 17px;
-  }
-
+  .hero-bottom { margin-top:22px; }
   .hero-lead {
-    font-size: .62rem;
-    line-height: 1.55;
-    letter-spacing: .16em;
+    max-width:300px;
+    font-size:.59rem;
+    line-height:1.65;
+    letter-spacing:.18em;
+    text-transform:uppercase;
   }
-
   .hero-note {
-    max-width: 315px;
-    margin: 16px auto 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: .94rem;
-    line-height: 1.5;
-    font-style: italic;
-    color: rgba(255, 255, 255, .86);
+    max-width:315px;
+    margin:15px 0 0;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:1rem;
+    line-height:1.5;
+    color:rgba(255,255,255,.88);
   }
-
-  .hero .text-link {
-    margin-top: 22px;
-  }
-
+  .hero .text-link { margin-top:22px; }
   .hero-arrow {
-    top: 50%;
-    width: 40px;
-    height: 56px;
-    opacity: .82;
+    top:45%;
+    width:42px;
+    height:58px;
+    background:rgba(0,0,0,.16);
+    backdrop-filter:blur(4px);
   }
-
+  .hero-arrow-prev { left:0; }
+  .hero-arrow-next { right:0; }
   .hero-pagination {
-    bottom: max(14px, env(safe-area-inset-bottom));
+    bottom:max(18px,env(safe-area-inset-bottom));
+    left:var(--m-gutter);
+    justify-content:flex-start;
+    transform:none;
   }
 
-  /* Ritmo editorial: títulos vuelven a tener presencia, sin convertirse en bloques gigantes. */
-  .manifesto {
-    padding: 100px 0 106px;
-  }
-
-  .manifesto-grid {
-    gap: 30px;
-  }
-
+  /* MANIFIESTO — tipografía grande y aire real */
+  .manifesto { padding:118px 0 126px; }
+  .manifesto-grid { gap:34px; }
   .manifesto h2 {
-    max-width: 335px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2.35rem, 11.2vw, 3.05rem);
-    line-height: 1.02;
-    letter-spacing: -.035em;
-    overflow-wrap: normal;
+    max-width:350px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(3rem,14.5vw,4rem);
+    font-weight:400;
+    line-height:.96;
+    letter-spacing:-.05em;
+    text-wrap:balance;
+    overflow-wrap:normal;
   }
-
   .manifesto-copy {
-    gap: 28px;
-    margin-top: 40px;
+    gap:30px;
+    margin-top:48px;
+    padding-top:30px;
+    border-top:1px solid var(--m-line);
   }
-
   .manifesto-copy .large {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.28rem;
-    line-height: 1.35;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:1.35rem;
+    line-height:1.38;
   }
+  .manifesto-copy p:not(.large) { font-size:.94rem; line-height:1.78; }
 
-  .manifesto-copy p:not(.large) {
-    font-size: .94rem;
-    line-height: 1.75;
-  }
-
+  /* ENCABEZADOS DE ARCHIVO */
   .work-head,
   .design-archive-head {
-    padding: 82px 0 48px;
+    display:block;
+    min-height:0;
+    padding:100px 0 56px;
   }
-
-  .work-head {
-    display: block;
-  }
-
   .work-head h2,
   .design-archive-head h2 {
-    margin-top: 14px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2.55rem, 12vw, 3.25rem);
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -.035em;
-    text-transform: none;
-    overflow-wrap: normal;
+    max-width:350px;
+    margin-top:14px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(3rem,14vw,3.9rem);
+    font-weight:400;
+    line-height:.94;
+    letter-spacing:-.05em;
+    text-transform:none;
+    overflow-wrap:normal;
   }
-
   .work-head p,
   .design-archive-head p {
-    max-width: 320px;
-    margin-top: 22px;
-    font-size: .9rem;
-    line-height: 1.72;
+    max-width:320px;
+    margin-top:24px;
+    font-size:.92rem;
+    line-height:1.72;
   }
 
-  /* Arquitectura: imágenes más arquitectónicas y jerarquía menos comprimida. */
-  #proyectos {
-    padding-bottom: 92px;
-  }
-
-  .project-grid {
-    gap: 98px;
-  }
-
-  .project-grid .project {
-    padding-bottom: 0;
-  }
-
+  /* ARQUITECTURA — portadas realmente protagonistas, de borde a borde */
+  #proyectos { padding-bottom:118px; }
+  .project-grid { gap:122px; }
+  .project-grid .project { padding:0; overflow:visible; }
   .project-grid .project-heading {
-    grid-template-columns: 32px minmax(0, 1fr);
-    gap: 10px 12px;
-    align-items: baseline;
-    margin: 0 0 22px;
-    padding-top: 15px;
-    border-top: 1px solid var(--m-rule);
+    display:grid;
+    grid-template-columns:34px minmax(0,1fr);
+    gap:9px 12px;
+    align-items:baseline;
+    margin:0 0 24px;
+    padding-top:16px;
+    border-top:1px solid var(--m-line);
   }
-
   .project-grid .project-index {
-    font-size: .61rem;
-    letter-spacing: .16em;
+    font-size:.6rem;
+    letter-spacing:.16em;
   }
-
   .project-grid .project h3 {
-    font-size: 1.23rem;
-    line-height: 1.2;
-    letter-spacing: .07em;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(1.75rem,8vw,2.25rem);
+    font-weight:400;
+    line-height:1.02;
+    letter-spacing:-.025em;
+    text-transform:none;
+    overflow-wrap:normal;
   }
-
   .project-grid .project-tag {
-    grid-column: 2;
-    margin-top: -2px;
-    font-size: .58rem;
-    line-height: 1.5;
-    letter-spacing: .13em;
+    grid-column:2;
+    margin-top:1px;
+    font-size:.56rem;
+    line-height:1.55;
+    letter-spacing:.13em;
   }
-
   .project-grid .project-cover {
-    aspect-ratio: 4 / 3;
+    width:100vw;
+    max-width:none;
+    aspect-ratio:4/3;
+    margin-left:calc(50% - 50vw);
   }
-
+  .project-grid .project-cover img { width:100%; height:100%; object-fit:cover; }
   .project-grid .project-summary {
-    gap: 28px;
-    padding-top: 25px;
+    grid-template-columns:minmax(0,1fr);
+    gap:30px;
+    padding-top:30px;
   }
-
   .project-grid .project-summary .statement {
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.18rem;
-    line-height: 1.42;
+    display:block;
+    overflow:visible;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:1.3rem;
+    line-height:1.42;
+    -webkit-line-clamp:unset;
   }
-
   .project-grid .project-data {
-    font-size: .82rem;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:16px 20px;
+    padding-top:22px;
+    border-top:1px solid var(--m-line);
+    font-size:.78rem;
   }
-
-  .project-grid > .project:has(.case-file[open]) {
-    padding: 0 0 18px;
-  }
-
+  .project-grid > .project:has(.case-file[open]) { padding:0 0 24px; }
+  .project-grid > .project:has(.case-file[open]) .project-cover { aspect-ratio:4/3; }
   .project-grid > .project:has(.case-file[open]) h3 {
-    font-size: 1.65rem;
-    line-height: 1.05;
+    font-size:clamp(2rem,9vw,2.6rem);
+    line-height:1;
   }
-
-  .project-grid > .project:has(.case-file[open]) .project-summary {
-    gap: 32px;
-  }
-
   .project-grid > .project:has(.case-file[open]) .case-intro p {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.1rem;
-    line-height: 1.55;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:1.16rem;
+    line-height:1.56;
   }
-
   .case-file > summary {
-    padding: 14px 0;
-    border-top: 1px solid var(--m-rule);
+    min-height:54px;
+    padding:16px 0;
+    border-top:1px solid var(--m-line);
+    border-bottom:1px solid var(--m-line);
   }
-
+  .case-content { padding-top:38px; }
   .technical-grid,
-  .project-gallery {
-    gap: 22px;
-  }
+  .story-grid,
+  .project-gallery { gap:28px; }
+  .project-gallery-media { aspect-ratio:4/3; }
+  .technical-image { aspect-ratio:4/3; }
 
-  .project-gallery-media {
-    aspect-ratio: 4 / 3;
-  }
-
-  /* CTA y diseño: más aire, menos sensación de lista comprimida. */
+  /* CTA — pausa oscura clara entre arquitectura y diseño */
   .mid-cta {
-    padding: 82px 0;
+    margin-left:calc(50% - 50vw);
+    width:100vw;
+    padding:96px var(--m-gutter);
+    background:var(--m-ink);
+    color:var(--m-paper);
   }
-
+  .mid-cta-inner { gap:42px; }
   .mid-cta h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2.15rem, 10vw, 2.8rem);
-    line-height: 1.08;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(2.8rem,13vw,3.7rem);
+    font-weight:400;
+    line-height:.98;
+    letter-spacing:-.045em;
   }
+  .mid-cta p { color:rgba(242,239,233,.74); }
+  .mid-cta a { color:var(--m-paper); }
 
+  /* DISEÑO / MOBILIARIO — imagen a sangre, texto pequeño y preciso */
   .design-categories {
-    margin-bottom: 38px;
-    gap: 9px 16px;
+    gap:10px 16px;
+    margin-bottom:44px;
+    font-size:.58rem;
   }
-
-  .design-grid {
-    gap: 72px;
+  .design-grid { gap:90px; }
+  .design-card { overflow:visible; }
+  .design-media,
+  .objects-card .design-media {
+    width:100vw;
+    max-width:none;
+    aspect-ratio:4/3;
+    margin-left:calc(50% - 50vw);
   }
-
-  .design-media {
-    aspect-ratio: 4 / 3;
-  }
-
   .design-card h3 {
-    margin-top: 17px;
-    font-size: .95rem;
-    line-height: 1.35;
-    letter-spacing: .12em;
+    margin-top:20px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:1.35rem;
+    font-weight:400;
+    line-height:1.15;
+    letter-spacing:-.01em;
+    text-transform:none;
   }
+  .design-card small { letter-spacing:.15em; }
 
-  .furniture {
-    padding-top: 102px;
-    padding-bottom: 102px;
-  }
-
+  .furniture { padding:118px 0 124px; }
   .furniture h2 {
-    max-width: 330px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2.75rem, 13vw, 3.55rem);
-    line-height: 1;
-    letter-spacing: -.035em;
+    max-width:350px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(3.1rem,14.5vw,4rem);
+    font-weight:400;
+    line-height:.95;
+    letter-spacing:-.05em;
   }
-
-  .furniture .furniture-lead {
-    margin-top: 58px;
-  }
-
+  .furniture .furniture-lead { margin-top:54px; }
   .furniture-lead p {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.2rem;
-    line-height: 1.45;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:1.3rem;
+    line-height:1.45;
   }
-
-  .furniture-services {
-    margin-top: 52px;
-  }
-
+  .furniture-services { margin-top:58px; }
   .furniture-service {
-    min-height: 0;
-    padding: 28px 0;
+    min-height:0;
+    padding:30px 0;
+    border-top:1px solid var(--m-line);
   }
+  .furniture-list { gap:20px; }
 
-  .furniture-list {
-    gap: 18px;
-  }
-
-  /* Diálogos: la imagen manda y la información se lee como ficha editorial. */
+  /* FICHAS DE MOBILIARIO — foto dominante y lectura limpia */
+  .furniture-dialog { width:100vw; height:100dvh; }
+  .furniture-dialog-inner { min-height:100dvh; }
   .furniture-dialog-media {
-    height: 48dvh;
-    min-height: 310px;
-    background: #eee9e0;
+    height:56dvh;
+    min-height:340px;
+    background:#e9e4dc;
   }
-
   .furniture-dialog-media img,
   .furniture-dialog-media.is-contain img,
   .objects-dialog .furniture-dialog-media img {
-    padding: 14px;
+    object-fit:contain;
+    padding:12px;
   }
-
-  .furniture-dialog-arrow {
-    top: 24dvh;
-  }
-
-  .furniture-dialog-dots {
-    top: calc(48dvh - 30px);
-  }
-
-  .furniture-dialog-count {
-    top: calc(48dvh + 14px);
-  }
-
+  .furniture-dialog-arrow { top:28dvh; }
+  .furniture-dialog-dots { top:calc(56dvh - 30px); }
+  .furniture-dialog-count { top:calc(56dvh + 14px); }
   .furniture-dialog-body {
-    gap: 30px;
-    padding: 58px var(--m-gutter) max(72px, calc(56px + env(safe-area-inset-bottom)));
+    grid-template-columns:minmax(0,1fr);
+    gap:32px;
+    padding:62px var(--m-gutter) max(80px,calc(60px + env(safe-area-inset-bottom)));
   }
-
   .furniture-dialog-body h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2rem, 9.5vw, 2.7rem);
-    letter-spacing: -.02em;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(2.45rem,11vw,3.2rem);
+    font-weight:400;
+    line-height:.98;
+    letter-spacing:-.04em;
   }
+  .furniture-dialog-copy { font-size:1rem; line-height:1.7; }
 
-  .furniture-dialog-copy {
-    font-size: 1rem;
-    line-height: 1.65;
-  }
-
-  /* Objetos: mantiene el gesto editorial sin que la escala se vuelva agresiva. */
-  .objects {
-    padding: 96px 0 102px;
-  }
-
-  .objects-heading {
-    gap: 28px;
-    padding-bottom: 58px;
-  }
-
+  /* OBJETOS — un capítulo separado, no una continuación plana */
+  .objects { padding:110px 0 120px; }
+  .objects-heading { gap:30px; padding-bottom:62px; }
   .objects-heading h2 {
-    max-width: 330px;
-    font-size: clamp(2.9rem, 13vw, 3.7rem);
-    line-height: .96;
+    max-width:355px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(3.2rem,15vw,4.1rem);
+    font-weight:400;
+    line-height:.94;
+    letter-spacing:-.05em;
   }
-
-  .objects-heading p {
-    font-size: 1rem;
-    line-height: 1.65;
-  }
-
+  .objects-heading p { font-size:1rem; line-height:1.68; }
   .objects-editorial {
-    min-height: 430px;
-    gap: 34px;
-    padding: 28px 24px;
+    width:100vw;
+    max-width:none;
+    min-height:520px;
+    margin-left:calc(50% - 50vw);
+    padding:36px var(--m-gutter);
+    gap:42px;
   }
-
-  .objects-statement {
-    gap: 56px;
-  }
-
+  .objects-statement { gap:72px; }
   .objects-statement p {
-    font-size: clamp(2.35rem, 11vw, 3rem);
-    line-height: 1;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(2.9rem,13vw,3.6rem);
+    line-height:.98;
+    letter-spacing:-.04em;
   }
+  .objects-outline { right:-.08em; bottom:-.32em; font-size:27rem; }
 
-  .objects-outline {
-    right: -.1em;
-    bottom: -.36em;
-    font-size: 24rem;
-  }
-
-  .objects-card .design-media {
-    aspect-ratio: 4 / 3;
-  }
-
-  /* Newsletter: tarjetas más parecidas a páginas de revista que a bloques de UI. */
+  /* NEWSLETTER — capítulo oscuro tipo revista */
   .notebook {
-    padding: 102px 0;
+    width:100vw;
+    max-width:none;
+    margin-left:calc(50% - 50vw);
+    padding:112px var(--m-gutter) 118px;
+    background:var(--m-ink);
+    color:var(--m-paper);
   }
-
-  .notebook h2,
-  .profile h2 {
-    max-width: 335px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2.75rem, 12.5vw, 3.4rem);
-    line-height: 1;
-    letter-spacing: -.035em;
-    overflow-wrap: normal;
+  .notebook .shell { width:100%; }
+  .notebook h2 {
+    max-width:350px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(3.4rem,15.5vw,4.2rem);
+    font-weight:400;
+    line-height:.92;
+    letter-spacing:-.055em;
+    color:var(--m-paper);
   }
-
   .notebook-intro {
-    gap: 28px;
-    margin: 42px 0 56px;
+    gap:28px;
+    margin:44px 0 62px;
   }
-
-  .note-grid {
-    border-top: 1px solid var(--m-rule);
-  }
-
+  .notebook-intro p { color:rgba(242,239,233,.72); line-height:1.72; }
+  .note-grid { border-top:1px solid rgba(242,239,233,.28); }
   .note-card {
-    min-height: 180px;
-    padding-top: 23px;
-    padding-bottom: 23px;
-    border-color: var(--m-rule);
+    min-height:0;
+    padding:30px 0 32px;
+    border-bottom:1px solid rgba(242,239,233,.28);
+    background:transparent;
+    color:var(--m-paper);
   }
-
+  .note-card small {
+    display:block;
+    margin-bottom:34px;
+    color:rgba(242,239,233,.58);
+    font-size:.57rem;
+    letter-spacing:.17em;
+  }
   .note-card h3 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.35rem;
-    line-height: 1.2;
-    letter-spacing: -.015em;
+    max-width:320px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(1.8rem,8vw,2.35rem);
+    font-weight:400;
+    line-height:1.04;
+    letter-spacing:-.025em;
+    color:var(--m-paper);
   }
-
   .note-card p {
-    line-height: 1.6;
+    margin-top:15px;
+    color:rgba(242,239,233,.64);
+    line-height:1.6;
   }
-
   .subscribe {
-    gap: 28px;
-    margin-top: 58px;
+    gap:38px;
+    margin-top:72px;
+    padding-top:38px;
+    border-top:1px solid rgba(242,239,233,.28);
   }
-
+  .subscribe h3,
+  .subscribe p,
+  .subscribe small { color:var(--m-paper); }
+  .subscribe-form { grid-template-columns:minmax(0,1fr); }
   .subscribe-form input {
-    min-height: 48px;
+    color:var(--m-paper);
+    border-color:rgba(242,239,233,.36);
+    background:transparent;
+  }
+  .subscribe-form input::placeholder { color:rgba(242,239,233,.48); }
+  .subscribe-form button {
+    color:var(--m-paper);
+    border-top:1px solid rgba(242,239,233,.36);
   }
 
-  /* Perfil y contacto: más elegantes y respirados en una sola columna. */
-  .profile {
-    padding: 102px 0;
-  }
-
-  .profile-grid {
-    gap: 52px;
-  }
-
+  /* PERFIL — retrato a sangre + texto editorial */
+  .profile { padding:118px 0 122px; }
+  .profile-grid { gap:52px; }
   .portrait {
-    height: min(116vw, 500px);
+    width:100vw;
+    max-width:none;
+    height:min(135vw,590px);
+    margin-left:calc(50% - 50vw);
   }
-
-  .profile-copy > p,
-  .profile-text .lead {
-    font-size: 1.05rem;
-    line-height: 1.6;
+  .profile h2 {
+    max-width:355px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(3rem,14vw,3.9rem);
+    font-weight:400;
+    line-height:.95;
+    letter-spacing:-.05em;
   }
+  .profile-grid p { line-height:1.75; }
+  .profile-facts,
+  .career-row { grid-template-columns:minmax(0,1fr); }
+  .profile-facts { padding-top:26px; border-top:1px solid var(--m-line); }
+  .career { margin-top:50px; }
+  .career summary { min-height:56px; border-top:1px solid var(--m-line); }
 
-  .profile-facts {
-    margin-top: 42px;
-  }
-
-  .profile-fact {
-    padding: 15px 0;
-  }
-
-  .career {
-    margin-top: 42px;
-  }
-
-  .career-row {
-    gap: 8px;
-    padding: 20px 0;
-  }
-
+  /* CONTACTO — final fuerte y deliberado */
   .contact {
-    padding-top: 102px;
-    padding-bottom: max(30px, env(safe-area-inset-bottom));
+    width:100vw;
+    max-width:none;
+    margin-left:calc(50% - 50vw);
+    padding:112px var(--m-gutter) max(42px,calc(30px + env(safe-area-inset-bottom)));
+    background:#1c1916;
+    color:var(--m-paper);
   }
-
+  .contact .shell { width:100%; }
   .contact h2 {
-    max-width: 345px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(3.25rem, 14.5vw, 4rem);
-    line-height: .94;
-    letter-spacing: -.045em;
-    overflow-wrap: normal;
+    max-width:355px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:clamp(3.7rem,17vw,4.8rem);
+    font-weight:400;
+    line-height:.9;
+    letter-spacing:-.06em;
+    color:var(--m-paper);
   }
-
-  .contact-links {
-    margin-top: 42px;
-  }
-
+  .contact p,
+  .contact small,
+  .contact label { color:rgba(242,239,233,.72); }
+  .contact-links { margin-top:52px; }
   .contact-links a {
-    padding: 18px 0;
-    font-size: .88rem;
-    line-height: 1.45;
+    padding:18px 0;
+    border-color:rgba(242,239,233,.25);
+    color:var(--m-paper);
+    font-size:.83rem;
   }
-
   .contact-form-wrap {
-    gap: 40px;
-    margin-top: 72px;
-    padding-top: 28px;
+    gap:44px;
+    margin-top:72px;
+    padding-top:40px;
+    border-top:1px solid rgba(242,239,233,.25);
   }
-
-  .contact-form-wrap h3 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.75rem;
-    line-height: 1.2;
-  }
-
-  .field {
-    gap: 9px;
-  }
-
+  .contact-form { grid-template-columns:minmax(0,1fr); }
+  .field-full,
+  .contact-submit,
+  .contact-form-note { grid-column:1; }
   .field input,
   .field textarea {
-    padding: 13px 0;
+    color:var(--m-paper);
+    background:transparent;
+    border-color:rgba(242,239,233,.32);
+    font-size:16px;
   }
-
+  .field input::placeholder,
+  .field textarea::placeholder { color:rgba(242,239,233,.42); }
   .contact-submit {
-    margin-top: 10px;
+    min-height:54px;
+    color:var(--m-paper);
+    border-color:rgba(242,239,233,.35);
   }
-
   .footer {
-    margin-top: 76px;
-    padding-bottom: env(safe-area-inset-bottom);
+    flex-direction:column;
+    gap:9px;
+    margin-top:78px;
+    padding-top:22px;
+    border-top:1px solid rgba(242,239,233,.2);
+    color:rgba(242,239,233,.55);
   }
 }
 
 @media (max-width: 420px) {
-  :root {
-    --m-gutter: 19px;
-  }
-
-  .menu-index {
-    grid-template-columns: 1fr 1fr;
-    gap: 22px 18px;
-  }
-
-  .menu-visual-grid {
-    grid-auto-columns: 82%;
-  }
-
-  .hero-copy {
-    width: min(100%, 320px);
-  }
-
-  .manifesto h2,
-  .notebook h2,
-  .profile h2,
-  .objects-heading h2,
-  .contact h2 {
-    max-width: 100%;
-  }
-
-  .project-grid {
-    gap: 88px;
-  }
-
-  .objects-editorial {
-    padding: 24px 21px;
-  }
+  :root { --m-gutter:18px; }
+  .menu-index { grid-template-columns:1fr; gap:20px; }
+  .menu-index-group { padding-bottom:14px; border-bottom:1px solid var(--m-line); }
+  .hero h1 { font-size:clamp(2.3rem,12vw,3rem); }
+  .project-grid .project-data { grid-template-columns:1fr; }
+  .notebook h2 { font-size:clamp(3.15rem,15vw,3.85rem); }
+  .contact h2 { font-size:clamp(3.35rem,16vw,4.3rem); }
 }
