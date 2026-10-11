@@ -1,0 +1,682 @@
+/*
+ * Refinamiento editorial exclusivamente móvil.
+ * Esta capa no modifica absolutamente nada por encima de 760 px.
+ */
+@media (max-width: 760px) {
+  :root {
+    --m-gutter: 22px;
+    --m-space: 92px;
+    --m-rule: rgba(37, 34, 31, .22);
+  }
+
+  html {
+    scroll-padding-top: 68px;
+  }
+
+  body {
+    text-rendering: optimizeLegibility;
+  }
+
+  .shell {
+    width: calc(100% - (var(--m-gutter) * 2));
+  }
+
+  /* Navegación: más limpia y con el mismo carácter editorial del escritorio. */
+  .nav-inner {
+    height: 68px;
+  }
+
+  .brand {
+    max-width: 205px;
+    font-size: .64rem;
+    line-height: 1.3;
+    letter-spacing: .19em;
+  }
+
+  .mobile-menu > summary {
+    width: 44px;
+    height: 44px;
+    margin-right: -7px;
+  }
+
+  .mobile-panel,
+  .mobile-menu[open] .mobile-panel {
+    padding: 86px var(--m-gutter) max(26px, env(safe-area-inset-bottom));
+    background: #f5f1e8;
+  }
+
+  .menu-index {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 24px;
+    padding: 0 0 30px;
+  }
+
+  .mobile-panel .menu-search {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 0 0 16px;
+    border-bottom: 1px solid var(--m-rule);
+  }
+
+  .menu-index-group {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+
+  .menu-index-group small {
+    display: block;
+    margin: 0 0 11px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: .78rem;
+    line-height: 1.2;
+    letter-spacing: .1em;
+  }
+
+  .menu-index-group a {
+    display: block;
+    min-height: 0;
+    padding: 4px 0;
+    color: #6f6861;
+    font-size: .57rem;
+    line-height: 1.45;
+    letter-spacing: .14em;
+  }
+
+  /* Recupera la dimensión visual del menú de escritorio en formato carrusel táctil. */
+  .menu-visual-grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(74%, 1fr);
+    grid-auto-rows: auto;
+    gap: 12px;
+    min-height: 0;
+    margin: 6px calc(var(--m-gutter) * -1) 0;
+    padding: 0 var(--m-gutter) 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu-visual-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-panel .menu-visual-card {
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+    scroll-snap-align: start;
+    border-radius: 0;
+  }
+
+  .menu-visual-card span {
+    top: 16px;
+    left: 16px;
+    font-size: .9rem;
+  }
+
+  .menu-visual-card em {
+    right: 16px;
+    bottom: 15px;
+  }
+
+  /* Hero: conserva la calma del desktop, con mejor lectura y respiración móvil. */
+  .hero,
+  .hero-inner {
+    min-height: 100svh;
+  }
+
+  .hero-inner {
+    padding-top: 98px;
+    padding-bottom: max(42px, calc(26px + env(safe-area-inset-bottom)));
+    justify-content: flex-end;
+  }
+
+  .hero-media:after {
+    background:
+      linear-gradient(180deg, rgba(18, 15, 12, .18) 0%, rgba(18, 15, 12, .02) 38%, rgba(18, 15, 12, .68) 100%);
+  }
+
+  .hero-copy {
+    width: min(100%, 340px);
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.08rem, 5vw, 1.34rem);
+    line-height: 1.2;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+
+  .hero-bottom {
+    margin-top: 17px;
+  }
+
+  .hero-lead {
+    font-size: .62rem;
+    line-height: 1.55;
+    letter-spacing: .16em;
+  }
+
+  .hero-note {
+    max-width: 315px;
+    margin: 16px auto 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: .94rem;
+    line-height: 1.5;
+    font-style: italic;
+    color: rgba(255, 255, 255, .86);
+  }
+
+  .hero .text-link {
+    margin-top: 22px;
+  }
+
+  .hero-arrow {
+    top: 50%;
+    width: 40px;
+    height: 56px;
+    opacity: .82;
+  }
+
+  .hero-pagination {
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+
+  /* Ritmo editorial: títulos vuelven a tener presencia, sin convertirse en bloques gigantes. */
+  .manifesto {
+    padding: 100px 0 106px;
+  }
+
+  .manifesto-grid {
+    gap: 30px;
+  }
+
+  .manifesto h2 {
+    max-width: 335px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.35rem, 11.2vw, 3.05rem);
+    line-height: 1.02;
+    letter-spacing: -.035em;
+    overflow-wrap: normal;
+  }
+
+  .manifesto-copy {
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .manifesto-copy .large {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.28rem;
+    line-height: 1.35;
+  }
+
+  .manifesto-copy p:not(.large) {
+    font-size: .94rem;
+    line-height: 1.75;
+  }
+
+  .work-head,
+  .design-archive-head {
+    padding: 82px 0 48px;
+  }
+
+  .work-head {
+    display: block;
+  }
+
+  .work-head h2,
+  .design-archive-head h2 {
+    margin-top: 14px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.55rem, 12vw, 3.25rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -.035em;
+    text-transform: none;
+    overflow-wrap: normal;
+  }
+
+  .work-head p,
+  .design-archive-head p {
+    max-width: 320px;
+    margin-top: 22px;
+    font-size: .9rem;
+    line-height: 1.72;
+  }
+
+  /* Arquitectura: imágenes más arquitectónicas y jerarquía menos comprimida. */
+  #proyectos {
+    padding-bottom: 92px;
+  }
+
+  .project-grid {
+    gap: 98px;
+  }
+
+  .project-grid .project {
+    padding-bottom: 0;
+  }
+
+  .project-grid .project-heading {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 10px 12px;
+    align-items: baseline;
+    margin: 0 0 22px;
+    padding-top: 15px;
+    border-top: 1px solid var(--m-rule);
+  }
+
+  .project-grid .project-index {
+    font-size: .61rem;
+    letter-spacing: .16em;
+  }
+
+  .project-grid .project h3 {
+    font-size: 1.23rem;
+    line-height: 1.2;
+    letter-spacing: .07em;
+  }
+
+  .project-grid .project-tag {
+    grid-column: 2;
+    margin-top: -2px;
+    font-size: .58rem;
+    line-height: 1.5;
+    letter-spacing: .13em;
+  }
+
+  .project-grid .project-cover {
+    aspect-ratio: 4 / 3;
+  }
+
+  .project-grid .project-summary {
+    gap: 28px;
+    padding-top: 25px;
+  }
+
+  .project-grid .project-summary .statement {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.18rem;
+    line-height: 1.42;
+  }
+
+  .project-grid .project-data {
+    font-size: .82rem;
+  }
+
+  .project-grid > .project:has(.case-file[open]) {
+    padding: 0 0 18px;
+  }
+
+  .project-grid > .project:has(.case-file[open]) h3 {
+    font-size: 1.65rem;
+    line-height: 1.05;
+  }
+
+  .project-grid > .project:has(.case-file[open]) .project-summary {
+    gap: 32px;
+  }
+
+  .project-grid > .project:has(.case-file[open]) .case-intro p {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.1rem;
+    line-height: 1.55;
+  }
+
+  .case-file > summary {
+    padding: 14px 0;
+    border-top: 1px solid var(--m-rule);
+  }
+
+  .technical-grid,
+  .project-gallery {
+    gap: 22px;
+  }
+
+  .project-gallery-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* CTA y diseño: más aire, menos sensación de lista comprimida. */
+  .mid-cta {
+    padding: 82px 0;
+  }
+
+  .mid-cta h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.15rem, 10vw, 2.8rem);
+    line-height: 1.08;
+  }
+
+  .design-categories {
+    margin-bottom: 38px;
+    gap: 9px 16px;
+  }
+
+  .design-grid {
+    gap: 72px;
+  }
+
+  .design-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .design-card h3 {
+    margin-top: 17px;
+    font-size: .95rem;
+    line-height: 1.35;
+    letter-spacing: .12em;
+  }
+
+  .furniture {
+    padding-top: 102px;
+    padding-bottom: 102px;
+  }
+
+  .furniture h2 {
+    max-width: 330px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.75rem, 13vw, 3.55rem);
+    line-height: 1;
+    letter-spacing: -.035em;
+  }
+
+  .furniture .furniture-lead {
+    margin-top: 58px;
+  }
+
+  .furniture-lead p {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    line-height: 1.45;
+  }
+
+  .furniture-services {
+    margin-top: 52px;
+  }
+
+  .furniture-service {
+    min-height: 0;
+    padding: 28px 0;
+  }
+
+  .furniture-list {
+    gap: 18px;
+  }
+
+  /* Diálogos: la imagen manda y la información se lee como ficha editorial. */
+  .furniture-dialog-media {
+    height: 48dvh;
+    min-height: 310px;
+    background: #eee9e0;
+  }
+
+  .furniture-dialog-media img,
+  .furniture-dialog-media.is-contain img,
+  .objects-dialog .furniture-dialog-media img {
+    padding: 14px;
+  }
+
+  .furniture-dialog-arrow {
+    top: 24dvh;
+  }
+
+  .furniture-dialog-dots {
+    top: calc(48dvh - 30px);
+  }
+
+  .furniture-dialog-count {
+    top: calc(48dvh + 14px);
+  }
+
+  .furniture-dialog-body {
+    gap: 30px;
+    padding: 58px var(--m-gutter) max(72px, calc(56px + env(safe-area-inset-bottom)));
+  }
+
+  .furniture-dialog-body h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 9.5vw, 2.7rem);
+    letter-spacing: -.02em;
+  }
+
+  .furniture-dialog-copy {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  /* Objetos: mantiene el gesto editorial sin que la escala se vuelva agresiva. */
+  .objects {
+    padding: 96px 0 102px;
+  }
+
+  .objects-heading {
+    gap: 28px;
+    padding-bottom: 58px;
+  }
+
+  .objects-heading h2 {
+    max-width: 330px;
+    font-size: clamp(2.9rem, 13vw, 3.7rem);
+    line-height: .96;
+  }
+
+  .objects-heading p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .objects-editorial {
+    min-height: 430px;
+    gap: 34px;
+    padding: 28px 24px;
+  }
+
+  .objects-statement {
+    gap: 56px;
+  }
+
+  .objects-statement p {
+    font-size: clamp(2.35rem, 11vw, 3rem);
+    line-height: 1;
+  }
+
+  .objects-outline {
+    right: -.1em;
+    bottom: -.36em;
+    font-size: 24rem;
+  }
+
+  .objects-card .design-media {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Newsletter: tarjetas más parecidas a páginas de revista que a bloques de UI. */
+  .notebook {
+    padding: 102px 0;
+  }
+
+  .notebook h2,
+  .profile h2 {
+    max-width: 335px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.75rem, 12.5vw, 3.4rem);
+    line-height: 1;
+    letter-spacing: -.035em;
+    overflow-wrap: normal;
+  }
+
+  .notebook-intro {
+    gap: 28px;
+    margin: 42px 0 56px;
+  }
+
+  .note-grid {
+    border-top: 1px solid var(--m-rule);
+  }
+
+  .note-card {
+    min-height: 180px;
+    padding-top: 23px;
+    padding-bottom: 23px;
+    border-color: var(--m-rule);
+  }
+
+  .note-card h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    line-height: 1.2;
+    letter-spacing: -.015em;
+  }
+
+  .note-card p {
+    line-height: 1.6;
+  }
+
+  .subscribe {
+    gap: 28px;
+    margin-top: 58px;
+  }
+
+  .subscribe-form input {
+    min-height: 48px;
+  }
+
+  /* Perfil y contacto: más elegantes y respirados en una sola columna. */
+  .profile {
+    padding: 102px 0;
+  }
+
+  .profile-grid {
+    gap: 52px;
+  }
+
+  .portrait {
+    height: min(116vw, 500px);
+  }
+
+  .profile-copy > p,
+  .profile-text .lead {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .profile-facts {
+    margin-top: 42px;
+  }
+
+  .profile-fact {
+    padding: 15px 0;
+  }
+
+  .career {
+    margin-top: 42px;
+  }
+
+  .career-row {
+    gap: 8px;
+    padding: 20px 0;
+  }
+
+  .contact {
+    padding-top: 102px;
+    padding-bottom: max(30px, env(safe-area-inset-bottom));
+  }
+
+  .contact h2 {
+    max-width: 345px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(3.25rem, 14.5vw, 4rem);
+    line-height: .94;
+    letter-spacing: -.045em;
+    overflow-wrap: normal;
+  }
+
+  .contact-links {
+    margin-top: 42px;
+  }
+
+  .contact-links a {
+    padding: 18px 0;
+    font-size: .88rem;
+    line-height: 1.45;
+  }
+
+  .contact-form-wrap {
+    gap: 40px;
+    margin-top: 72px;
+    padding-top: 28px;
+  }
+
+  .contact-form-wrap h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .field {
+    gap: 9px;
+  }
+
+  .field input,
+  .field textarea {
+    padding: 13px 0;
+  }
+
+  .contact-submit {
+    margin-top: 10px;
+  }
+
+  .footer {
+    margin-top: 76px;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --m-gutter: 19px;
+  }
+
+  .menu-index {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 18px;
+  }
+
+  .menu-visual-grid {
+    grid-auto-columns: 82%;
+  }
+
+  .hero-copy {
+    width: min(100%, 320px);
+  }
+
+  .manifesto h2,
+  .notebook h2,
+  .profile h2,
+  .objects-heading h2,
+  .contact h2 {
+    max-width: 100%;
+  }
+
+  .project-grid {
+    gap: 88px;
+  }
+
+  .objects-editorial {
+    padding: 24px 21px;
+  }
+}
