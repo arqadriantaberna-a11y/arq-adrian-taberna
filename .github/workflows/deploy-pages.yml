@@ -48,6 +48,9 @@ jobs:
       - name: Enlazar tercer artículo del Newsletter
         run: node scripts/link-third-newsletter.mjs
 
+      - name: Corregir encabezados de proyectos en móvil
+        run: node scripts/fix-mobile-project-headings.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
