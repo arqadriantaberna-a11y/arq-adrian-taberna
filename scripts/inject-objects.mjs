@@ -96,5 +96,12 @@ result = replaceOnce(result,
 
 result = replaceOnce(result, '</body>', `<script>\n${gallery}\n</script>\n<script>\n${refinements}\n</script>\n</body>`);
 
+
+// Primer artículo real: la tarjeta conserva su composición y pasa a ser un enlace nativo.
+result = replaceOnce(result,
+  '<article class="note-card">\n          <small>01 · Diseño de mobiliario</small>\n          <div><h3>Imaginar el uso antes de dibujar el objeto</h3><p>Cómo observar gestos cotidianos ayuda a definir proporción, ergonomía y carácter.</p></div>\n        </article>',
+  '<a class="note-card" href="./newsletter/imaginar-el-uso/" aria-label="Leer Imaginar el uso antes de dibujar el objeto">\n          <small>01 · Diseño de mobiliario</small>\n          <div><h3>Imaginar el uso antes de dibujar el objeto</h3><p>Cómo observar gestos cotidianos ayuda a definir proporción, ergonomía y carácter.</p></div>\n        </a>');
+result = replaceOnce(result, 'aria-label="Próximas notas"', 'aria-label="Notas del Newsletter"');
+
 writeFileSync(pagePath, result);
 console.log("Objetos de diseño incorporados a la portada y a ambos menús.");
