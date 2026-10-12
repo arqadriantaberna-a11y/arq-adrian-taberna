@@ -51,6 +51,16 @@ jobs:
       - name: Corregir encabezados de proyectos en móvil
         run: node scripts/fix-mobile-project-headings.mjs
 
+      - name: Incorporar Habitar el Vacío en la portada
+        run: node scripts/add-habitar-vacio.mjs
+
+      - name: Descargar imágenes de Habitar el Vacío
+        run: |
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/ca115dab-d4f9-4a45-bc8d-ea0931293022-habitar-vacio-assets.zip" -o /tmp/habitar-vacio-assets.zip
+          echo "54a1a7db88db69de2648b22327f9e08e3d9f0c12d911b5d0f7195c12b91c77b8  /tmp/habitar-vacio-assets.zip" | sha256sum --check
+          unzip -q /tmp/habitar-vacio-assets.zip -d out
+          test -f out/images/habitar-vacio/31-maqueta.webp
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
