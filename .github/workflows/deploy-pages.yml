@@ -61,6 +61,9 @@ jobs:
           unzip -q /tmp/habitar-vacio-assets.zip -d out
           test -f out/images/habitar-vacio/31-maqueta.webp
 
+      - name: Conservar proporciones originales en Habitar el Vacío
+        run: node scripts/preserve-habitar-vacio-image-ratios.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
