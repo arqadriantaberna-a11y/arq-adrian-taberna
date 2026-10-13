@@ -36,7 +36,10 @@ const process = [
   [47,"Croquis exterior","Croquis"],[48,"Croquis del patio","Croquis"],[49,"Croquis interior","Croquis"],[50,"Maqueta física","Maqueta"]
 ];
 
-const src = n => `./images/habitar-umbral-new/umbral-${String(n).padStart(2,"0")}.webp`;
+const externalSources = {
+  41: "https://adrian-360.floot.app/_cdn/static/9b7c037f-1616-4a85-b7a6-05f2858c87e3-habitar-umbral-esquema-41.webp"
+};
+const src = n => externalSources[n] || `./images/habitar-umbral-new/umbral-${String(n).padStart(2,"0")}.webp`;
 const fig = (n,title,type,cls="") => `<figure${cls ? ` class="${cls}"` : ""}><div class="umbral-doc-media"><img src="${src(n)}" loading="lazy" decoding="async" alt="${title} de Habitar el Umbral"></div><figcaption><span>${title}</span><span>${String(n).padStart(2,"0")} · ${type}</span></figcaption></figure>`;
 
 const technicalFigures = technical.map(([n,title,type]) => fig(n,title,type,"technical-small")).join("\n");
