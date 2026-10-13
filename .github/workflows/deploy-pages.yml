@@ -75,6 +75,16 @@ jobs:
       - name: Reemplazar Habitar el Umbral por la nueva versión
         run: node scripts/replace-habitar-umbral.mjs
 
+      - name: Descargar documentación renovada de Casa Patio
+        run: |
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/51a35f61-7e57-40f7-9e52-8a77b1226d1e-casa-patio-renovado-assets.zip" -o /tmp/casa-patio-assets.zip
+          echo "a88c647c63793ac704d146bddd54e25f7f7b0f05cf45d643269358d4a7d37944  /tmp/casa-patio-assets.zip" | sha256sum --check
+          unzip -q /tmp/casa-patio-assets.zip -d out
+          test -f out/images/casa-patio-new/casa-35.jpeg
+
+      - name: Reemplazar Casa Patio por la nueva versión
+        run: node scripts/replace-casa-patio.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
