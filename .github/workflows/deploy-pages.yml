@@ -64,6 +64,17 @@ jobs:
       - name: Conservar proporciones originales en Habitar el Vacío
         run: node scripts/preserve-habitar-vacio-image-ratios.mjs
 
+      - name: Descargar nueva documentación de Habitar el Umbral
+        run: |
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/00c61884-01ca-423d-9308-80141b05b61d-habitar-umbral-nuevo-assets.zip" -o /tmp/habitar-umbral-assets.zip
+          echo "c09dbb30e1a8af75766afd6ae4304f315a2cdf54ba559a15ab8525ec0b39ac9f  /tmp/habitar-umbral-assets.zip" | sha256sum --check
+          rm -rf out/proyectos/habitar-el-umbral
+          unzip -q /tmp/habitar-umbral-assets.zip -d out
+          test -f out/images/habitar-umbral-new/umbral-50.webp
+
+      - name: Reemplazar Habitar el Umbral por la nueva versión
+        run: node scripts/replace-habitar-umbral.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
