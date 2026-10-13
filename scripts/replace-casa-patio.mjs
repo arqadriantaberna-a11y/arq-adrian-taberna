@@ -43,7 +43,6 @@ const schemes = [
 ];
 
 const sketches = [
-  [31,"Croquis de estudio","Croquis"],
   [32,"Croquis de fachada y acceso","Croquis"],
   [33,"Croquis interior y patio","Croquis"],
   [34,"Croquis del vacío central","Croquis"]
@@ -56,7 +55,6 @@ const technicalFigures = technical.map(([n,title,type]) => figure(n,title,type))
 const renderFigures = renders.map(([n,title,feature]) => figure(n,title,"Render",feature ? "feature" : "")).join("\n");
 const schemeFigures = schemes.map(([n,title,type]) => figure(n,title,type)).join("\n");
 const sketchFigures = sketches.map(([n,title,type]) => figure(n,title,type)).join("\n");
-const modelFigure = figure(35,"Maqueta física · registro","Maqueta");
 
 const article = `
     <article class="project casa-patio-new" id="casa-patio">
@@ -122,12 +120,6 @@ const article = `
             </div>
             <div class="casa-patio-sketches">${sketchFigures}</div>
 
-            <div class="casa-patio-sectionhead compact">
-              <h4>Maqueta</h4>
-              <p>Registro de maqueta incorporado en la documentación renovada del proyecto.</p>
-            </div>
-            <div class="casa-patio-model">${modelFigure}</div>
-
             <p class="casa-patio-source">Casa Patio · Memoria descriptiva y documentación renovada</p>
             <div class="casa-patio-close"></div>
           </div>
@@ -150,4 +142,4 @@ html = html.replaceAll("Proyecto conceptual · Vivienda unifamiliar · 244,80 m�
 html = html.replaceAll("Luz, vegetación y vida cotidiana organizadas alrededor de un vacío central.", "El vacío como principio organizador del habitar.");
 
 writeFileSync(pagePath, html);
-console.log(`Casa Patio renovada: ${technical.length} piezas técnicas, ${renders.length + 1} renders, ${schemes.length} esquemas, ${sketches.length} croquis y 1 maqueta.`);
+console.log(`Casa Patio renovada: ${technical.length} piezas técnicas, ${renders.length + 1} renders, ${schemes.length} esquemas y ${sketches.length} croquis.`);
