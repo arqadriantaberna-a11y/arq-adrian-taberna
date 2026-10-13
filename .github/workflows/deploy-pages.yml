@@ -81,6 +81,8 @@ jobs:
           echo "a88c647c63793ac704d146bddd54e25f7f7b0f05cf45d643269358d4a7d37944  /tmp/casa-patio-assets.zip" | sha256sum --check
           unzip -q /tmp/casa-patio-assets.zip -d out
           test -f out/images/casa-patio-new/casa-35.jpeg
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/a9d34183-8876-4593-8942-2497a8d3230a-casa-patio-maqueta-nueva.png" -o out/images/casa-patio-new/maqueta-nueva.png
+          echo "fb6c546b6e87a88a4401e70495ea0250b05abf245094970ebb3537a04d694387  out/images/casa-patio-new/maqueta-nueva.png" | sha256sum --check
 
       - name: Reemplazar Casa Patio por la nueva versión
         run: node scripts/replace-casa-patio.mjs
