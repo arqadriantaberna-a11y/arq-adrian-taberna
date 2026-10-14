@@ -87,6 +87,20 @@ jobs:
       - name: Reemplazar Casa Patio por la nueva versión
         run: node scripts/replace-casa-patio.mjs
 
+      - name: Descargar documentación renovada de Torre Residencial
+        run: |
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/7b823acc-32ab-43c6-b180-c353a35d2926-torre-residencial-renovada-assets-a.zip" -o /tmp/torre-residencial-a.zip
+          echo "c418ab48cc56bb2376e69703f90eef7a3099b3f390d6f758a0285f44c606b1bc  /tmp/torre-residencial-a.zip" | sha256sum --check
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/ecf09c83-df07-47c8-9b9c-eb54bf5caa7e-torre-residencial-renovada-assets-b.zip" -o /tmp/torre-residencial-b.zip
+          echo "53370daf63d5d1aafc124f23a88dad19b399d24da198f74c173a459360e1b468  /tmp/torre-residencial-b.zip" | sha256sum --check
+          unzip -q /tmp/torre-residencial-a.zip -d out
+          unzip -q /tmp/torre-residencial-b.zip -d out
+          test -f out/images/torre-residencial-new/torre-01.webp
+          test -f out/images/torre-residencial-new/torre-41.webp
+
+      - name: Reemplazar Torre Residencial por la nueva versión
+        run: node scripts/replace-torre-residencial.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
