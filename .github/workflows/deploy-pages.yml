@@ -101,6 +101,17 @@ jobs:
       - name: Reemplazar Torre Residencial por la nueva versión
         run: node scripts/replace-torre-residencial.mjs
 
+      - name: Descargar documentación renovada de Centro Ambulatorio
+        run: |
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/c4a0227f-cd46-41bc-bb74-09a7e0498058-centro-ambulatorio-renovado-assets.zip" -o /tmp/centro-ambulatorio-assets.zip
+          echo "ff1163aaa384d82d3b9f23f4f2e2c6299e9726d3923c1282fc37d96940483789  /tmp/centro-ambulatorio-assets.zip" | sha256sum --check
+          unzip -q /tmp/centro-ambulatorio-assets.zip -d out
+          test -f out/images/centro-ambulatorio-new/centro-14.jpeg
+          test -f out/images/centro-ambulatorio-new/centro-48.jpeg
+
+      - name: Reemplazar Centro Ambulatorio por la nueva versión
+        run: node scripts/replace-centro-ambulatorio.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
