@@ -112,6 +112,24 @@ jobs:
       - name: Reemplazar Centro Ambulatorio por la nueva versión
         run: node scripts/replace-centro-ambulatorio.mjs
 
+      - name: Descargar las 48 páginas y el PDF de CALIGO N.º 001
+        run: |
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/87c01fe8-1412-4fe0-b79a-71a3c652bd5a-caligo-n001-pages.zip" -o /tmp/caligo-pages.zip
+          echo "a779cdfa85f3e63e8caadc486c8ac15122cc17031992e4f7a58525e81f2ed1a0  /tmp/caligo-pages.zip" | sha256sum --check
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/e0742c78-8e92-4cb0-81f5-a8e1e203a2a4-caligo-n001-pdf.zip" -o /tmp/caligo-pdf.zip
+          echo "917e0179e2ff25a48e4261205b2c26dedfbe561e730f68700397d2abfd1e18e9  /tmp/caligo-pdf.zip" | sha256sum --check
+          unzip -q /tmp/caligo-pages.zip -d out
+          unzip -q /tmp/caligo-pdf.zip -d out
+          test -f out/images/caligo/n001/p01.webp
+          test -f out/images/caligo/n001/p48.webp
+          test -f out/revista/caligo/n001/CALIGO_N001_web.pdf
+
+      - name: Publicar revista CALIGO y su lector independiente
+        run: |
+          mkdir -p out/revista/caligo/n001
+          cp static-site/caligo-reader.html out/revista/caligo/n001/index.html
+          node scripts/add-caligo.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
