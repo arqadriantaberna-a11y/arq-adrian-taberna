@@ -148,6 +148,14 @@ jobs:
       - name: Publicar CALIGO N.º 002 y conservar archivo del N.º 001
         run: node scripts/add-caligo-n002.mjs
 
+      - name: Publicar archivo de todos los ejemplares de CALIGO
+        run: |
+          mkdir -p out/revista/caligo
+          cp static-site/caligo-archivo.html out/revista/caligo/index.html
+          test -f out/revista/caligo/n001/index.html
+          test -f out/revista/caligo/n002/index.html
+          test -f out/revista/caligo/index.html
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
