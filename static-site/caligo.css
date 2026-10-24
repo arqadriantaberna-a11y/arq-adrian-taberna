@@ -68,3 +68,12 @@
 .caligo-section .caligo-archive-action{grid-column:2;white-space:normal}
 .caligo-section .caligo-archive-details strong{font-size:1.35rem}
 }
+
+
+/* Acción de archivo de ejemplares. Se mantiene la jerarquía de portadas existente. */
+.caligo-section .caligo-archive-more{display:flex;justify-content:flex-end;padding-top:26px}
+.caligo-section .caligo-archive-button{display:inline-flex;align-items:center;justify-content:space-between;gap:35px;min-height:54px;padding:16px 21px;background:#29241f;border:1px solid #29241f;color:#f6f1e8!important;text-decoration:none!important;text-transform:uppercase;font-size:.66rem;letter-spacing:.13em;transition:background .2s,border-color .2s}
+.caligo-section .caligo-archive-button:hover{background:#9a5643;border-color:#9a5643}
+.caligo-section .caligo-archive-button span{font-size:1.05rem}
+@media(max-width:760px){.caligo-section .caligo-archive-more{justify-content:stretch}.caligo-section .caligo-archive-button{width:100%}}
+@media(prefers-reduced-motion:reduce){.caligo-section .caligo-archive-button{transition:none}}
