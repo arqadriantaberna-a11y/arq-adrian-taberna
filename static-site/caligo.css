@@ -44,3 +44,27 @@
 .caligo-section .caligo-signup-note{font-size:.75rem;line-height:1.6;color:#625950;margin:13px 0 0;max-width:540px}
 @media(max-width:980px){.caligo-section .caligo-signup{grid-template-columns:1fr;gap:26px;margin-top:62px}}
 @media(max-width:760px){.caligo-section .caligo-signup{margin-top:54px}.caligo-section .caligo-signup-controls{display:grid;grid-template-columns:1fr;gap:0}.caligo-section .caligo-signup-controls input{min-height:52px}.caligo-section .caligo-signup-controls button{justify-self:start;min-height:46px}.caligo-section .caligo-signup-intro h3{font-size:2.3rem}}
+
+
+/* CALIGO — archivo editorial, números anteriores. */
+.caligo-section .caligo-archive{margin-top:76px;padding-top:22px;border-top:1px solid #867d73;}
+.caligo-section .caligo-archive-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:22px;color:#71675d}
+.caligo-section .caligo-archive-head p{margin:0;font-size:.66rem;letter-spacing:.17em;text-transform:uppercase;color:#403831}
+.caligo-section .caligo-archive-head>span{font-family:Georgia,'Times New Roman',serif;font-size:.96rem}
+.caligo-section .caligo-archive-item{display:grid;grid-template-columns:100px minmax(0,1fr) auto;align-items:center;gap:28px;padding:16px 0 22px;border-bottom:1px solid rgba(54,48,41,.25);color:#29241f;text-decoration:none!important}
+.caligo-section .caligo-archive-item:hover .caligo-archive-details strong{color:#994e38}
+.caligo-section .caligo-archive-item img{width:100px;height:auto;box-shadow:0 4px 13px rgba(43,35,27,.12)}
+.caligo-section .caligo-archive-details{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.caligo-section .caligo-archive-details small{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:#9e5945}
+.caligo-section .caligo-archive-details strong{font:normal clamp(1.5rem,2.8vw,2.35rem)/1.15 Georgia,'Times New Roman',serif;letter-spacing:-.025em;transition:color .2s}
+.caligo-section .caligo-archive-details>span{font:normal .91rem/1.55 Georgia,'Times New Roman',serif;color:#655c54}
+.caligo-section .caligo-archive-action{font-size:.62rem;text-transform:uppercase;letter-spacing:.13em;white-space:nowrap}
+@media(max-width:760px){
+.caligo-section .caligo-archive{margin-top:55px}
+.caligo-section .caligo-archive-head{display:block}
+.caligo-section .caligo-archive-head>span{display:block;margin-top:9px}
+.caligo-section .caligo-archive-item{grid-template-columns:75px minmax(0,1fr);gap:16px}
+.caligo-section .caligo-archive-item img{width:75px}
+.caligo-section .caligo-archive-action{grid-column:2;white-space:normal}
+.caligo-section .caligo-archive-details strong{font-size:1.35rem}
+}
