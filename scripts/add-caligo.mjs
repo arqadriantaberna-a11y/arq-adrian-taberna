@@ -81,7 +81,7 @@ document.querySelectorAll('form[data-caligo-subscribe]').forEach(form => {
   });
 });
 </script>`;
-html=html.replace('</body>',caligoSignupScript+'\\n</body>');
+html=html.replace('</body>',caligoSignupScript+'\n</body>');
 
 writeFileSync(file,html);
 console.log('CALIGO N.º 001 añadida como sección independiente del Newsletter, con enlaces y portada.');
