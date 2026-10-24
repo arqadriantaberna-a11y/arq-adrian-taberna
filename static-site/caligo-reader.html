@@ -22,13 +22,28 @@
 @media(max-width:1100px){.reader{grid-template-columns:215px minmax(0,1fr)}.toc{padding-left:22px;padding-right:18px}.sheet{width:min(calc(100vw - 270px),calc(630px * var(--page-scale)))}.spread[data-mode="spread"] .sheet{width:min(calc((100vw - 305px)/2),calc(500px * var(--page-scale)))}}
 @media(max-width:760px){:root{--nav-h:62px}.top{padding:0 18px}.top-mid{display:none}.top-actions{gap:13px}.top-actions a{font-size:.58rem}.hero{padding:38px 18px 27px}.eyebrow{font-size:.55rem}.hero h1{font-size:clamp(2.7rem,11vw,4.9rem)}.reader{display:block}.toc{border-right:0;border-bottom:1px solid var(--line);padding:15px 18px}.toc-inside{position:relative;top:auto}.toc-kicker{margin-bottom:8px}.toc-list{display:flex;gap:9px;overflow-x:auto;padding:7px 0 5px;scrollbar-width:thin}.toc a{min-width:180px;border:1px solid var(--line);padding:10px;gap:6px}.toc a span:last-child{font-size:.91rem}.toc-foot{display:none}.viewer{padding:22px 12px 60px}.viewer-top{padding:0 7px 14px}.viewer-tools{gap:4px}.tool{font-size:.59rem;padding:7px}.tool.icon{min-width:32px}.tool[data-tool="spread"]{display:none}.spread{justify-content:center}.sheet{width:min(calc(100vw - 35px),calc(650px * var(--page-scale)))}.spread[data-mode="spread"] .sheet{width:min(calc(100vw - 35px),calc(650px * var(--page-scale)))}.stage{padding-bottom:7px}.bottom-controls{padding:15px 7px 0}.reader-note{padding:0 10px}.end{padding:60px 18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.caligo-reader-signup{padding:clamp(64px,7vw,110px) clamp(20px,6vw,92px);background:#dcd7ce;color:#28231f;border-top:1px solid var(--line)}
+.caligo-reader-signup-inner{max-width:1400px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,8vw,110px);align-items:end}
+.caligo-reader-signup small{display:block;font:normal .65rem Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.18em;color:#965b4b;margin-bottom:21px}
+.caligo-reader-signup h2{font:normal clamp(2.3rem,4.4vw,4.7rem)/1.02 Georgia,'Times New Roman',serif;letter-spacing:-.045em;margin:0 0 24px}
+.caligo-reader-signup p{font:normal 1.06rem/1.55 Georgia,'Times New Roman',serif;max-width:520px;margin:0;color:#625950}
+.caligo-reader-signup-form label{display:block;font:normal .65rem Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.13em;margin:0 0 16px}
+.caligo-reader-signup-controls{display:flex;border-bottom:1px solid #6b6259;min-height:62px;align-items:stretch;gap:16px}
+.caligo-reader-signup-controls input{min-width:0;flex:1;background:transparent;border:0;font:normal 1.04rem Georgia,'Times New Roman',serif;padding:13px 0;outline-offset:2px;color:#28231f}
+.caligo-reader-signup-controls button{padding:13px 0;border:0;background:transparent;font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;white-space:nowrap}
+.caligo-reader-signup-controls button:hover{color:#965b4b}
+.caligo-reader-signup-controls button span{font-size:1.1rem;margin-left:7px}
+.caligo-reader-signup p.caligo-reader-signup-note{font:normal .75rem/1.6 Arial,Helvetica,sans-serif;color:#6e675e;max-width:530px;margin-top:14px}
+@media(max-width:760px){.caligo-reader-signup-inner{grid-template-columns:1fr;gap:35px}.caligo-reader-signup-controls{flex-direction:column;gap:0}.caligo-reader-signup-controls input{min-height:51px}.caligo-reader-signup-controls button{align-self:flex-start;min-height:48px}.caligo-reader-signup h2{font-size:2.8rem}}
+
 </style>
 </head>
 <body>
 <header class="top">
 <a class="top-brand" href="../../../#revista" aria-label="Volver a CALIGO en Arq. Adrian Taberna">CALIGO</a>
 <div class="top-mid"><span>Arquitectura · Diseño · Cultura</span><span>—</span><span>N.º 001 / 2026</span></div>
-<div class="top-actions"><a href="../../../#revista">← Portfolio</a><a href="./CALIGO_N001_web.pdf" download>PDF ↓</a></div>
+<div class="top-actions"><a href="../../../#revista">← Portfolio</a><a href="#suscripcion">Suscribirse</a><a href="./CALIGO_N001_web.pdf" download>PDF ↓</a></div>
 </header>
 <section class="hero">
 <div class="eyebrow"><span>Revista de arquitectura · Edición inaugural</span><span>Dirección editorial · Arq. Adrian Taberna</span></div>
@@ -60,6 +75,25 @@
 <p class="reader-note">Usá las flechas del teclado para avanzar o retroceder. Podés ampliar las páginas con <strong>+</strong> y desplazarte para leer detalles. También podés <a href="./CALIGO_N001_web.pdf" download>descargar la edición en PDF optimizado para pantalla</a>.</p>
 </main>
 </div>
+<section class="caligo-reader-signup" id="suscripcion" aria-labelledby="suscripcion-titulo">
+  <div class="caligo-reader-signup-inner">
+    <div>
+      <small>CALIGO · Próximas ediciones</small>
+      <h2 id="suscripcion-titulo">La próxima edición, en tu correo.</h2>
+      <p>Recibí noticias de los próximos números, nuevas investigaciones y novedades editoriales de CALIGO.</p>
+    </div>
+    <div>
+      <form data-caligo-subscribe class="caligo-reader-signup-form">
+        <label for="caligo-reader-email">Tu correo electrónico</label>
+        <div class="caligo-reader-signup-controls">
+          <input id="caligo-reader-email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" maxlength="254" required>
+          <button type="submit">Solicitar suscripción <span aria-hidden="true">↗</span></button>
+        </div>
+      </form>
+      <p class="caligo-reader-signup-note">Se abrirá tu aplicación de correo con la solicitud preparada. Confirmá el envío del mensaje; no es un alta automática.</p>
+    </div>
+  </div>
+</section>
 <footer class="end"><small>CALIGO · Una publicación independiente</small><h2>La arquitectura no empieza en la forma.</h2><p>Empieza en la vida que hace posible.</p><a href="../../../#revista">Volver al portfolio ↗</a></footer>
 <script>
 (()=>{
@@ -99,5 +133,18 @@ mobile.addEventListener('change',()=>draw(false));
 current=parse();draw(false);
 if(location.hash&&current>1)requestAnimationFrame(()=>document.getElementById('lector').scrollIntoView({block:'start'}));
 })();
+</script>
+<script>
+document.querySelectorAll('form[data-caligo-subscribe]').forEach(form => {
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const email = form.querySelector('input[type="email"]').value.trim();
+    if (!email) return;
+    const subject = encodeURIComponent('CALIGO - Solicitud de suscripción por correo');
+    const body = encodeURIComponent('Hola, quiero recibir las nuevas ediciones y novedades de CALIGO por correo electrónico.\\n\\nMi dirección es: ' + email + '\\n\\nGracias.');
+    window.location.href = 'mailto:arq.adrian.taberna@gmail.com?subject=' + subject + '&body=' + body;
+  });
+});
 </script>
 </body></html>
