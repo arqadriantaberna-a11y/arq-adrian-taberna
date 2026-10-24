@@ -36,6 +36,23 @@ const section=`
           <a class="caligo-story" href="./revista/caligo/n001/#p40"><span class="caligo-story-num">05</span><span class="caligo-story-name">Arquitectura antes del aire acondicionado.<small>Laboratorio CALIGO · p. 40</small></span></a>
         </div>
       </div>
+      <div class="caligo-signup" id="caligo-suscripcion" aria-labelledby="caligo-signup-title">
+        <div class="caligo-signup-intro">
+          <p class="caligo-signup-kicker">CALIGO · Nuevas ediciones</p>
+          <h3 id="caligo-signup-title">Recibí la revista en tu correo.</h3>
+          <p>Enterate cuando publiquemos un nuevo número de CALIGO y recibí novedades editoriales sobre arquitectura, diseño y cultura.</p>
+        </div>
+        <div class="caligo-signup-side">
+          <form class="caligo-signup-form" data-caligo-subscribe>
+            <label for="caligo-email">Tu correo electrónico</label>
+            <div class="caligo-signup-controls">
+              <input id="caligo-email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" maxlength="254" required>
+              <button type="submit">Solicitar suscripción <span aria-hidden="true">↗</span></button>
+            </div>
+          </form>
+          <p class="caligo-signup-note">Al continuar se abrirá tu aplicación de correo con la solicitud preparada. Para enviarla, confirmá el mensaje. El alta no es automática.</p>
+        </div>
+      </div>
     </div>
   </section>
 `;
@@ -50,5 +67,21 @@ if(!html.includes(mobile))throw new Error('Navegación móvil no encontrada');
 html=html.replace(mobile,mobile+'<a href="#revista">• Revista CALIGO</a>');
 const css=readFileSync('static-site/caligo.css','utf8');
 if(!html.includes('id="caligo-styles"'))html=html.replace('</head>',`<style id="caligo-styles">\n${css}\n</style>\n</head>`);
+
+const caligoSignupScript = `<script>
+document.querySelectorAll('form[data-caligo-subscribe]').forEach(form => {
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const email = form.querySelector('input[type="email"]').value.trim();
+    if (!email) return;
+    const subject = encodeURIComponent('CALIGO - Solicitud de suscripción por correo');
+    const body = encodeURIComponent('Hola, quiero recibir las nuevas ediciones y novedades de CALIGO por correo electrónico.\\n\\nMi dirección es: ' + email + '\\n\\nGracias.');
+    window.location.href = 'mailto:arq.adrian.taberna@gmail.com?subject=' + subject + '&body=' + body;
+  });
+});
+</script>`;
+html=html.replace('</body>',caligoSignupScript+'\\n</body>');
+
 writeFileSync(file,html);
 console.log('CALIGO N.º 001 añadida como sección independiente del Newsletter, con enlaces y portada.');
