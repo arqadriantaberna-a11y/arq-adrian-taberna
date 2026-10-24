@@ -69,6 +69,13 @@ const archive='      <div class="caligo-archive" aria-labelledby="caligo-archive
 section=changeOnce(section,
   '      <div class="caligo-signup" id="caligo-suscripcion"',
   archive+'      <div class="caligo-signup" id="caligo-suscripcion"');
+
+// Botón de acceso al archivo completo, junto a la edición anterior.
+// Preserva el N.º 002 como protagonista y el N.º 001 en formato pequeño.
+section=changeOnce(section,
+  '        </a>\n      </div>\n      <div class="caligo-signup"',
+  '        </a>\n        <div class="caligo-archive-more"><a class="caligo-archive-button" href="./revista/caligo/" aria-label="Ver todos los ejemplares publicados de CALIGO">Ver todos los ejemplares <span aria-hidden="true">↗</span></a></div>\n      </div>\n      <div class="caligo-signup"');
+
 html=html.slice(0,sectionStart)+section+html.slice(sectionEnd);
 writeFileSync(mainPath,html);
 
