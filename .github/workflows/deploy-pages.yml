@@ -156,6 +156,9 @@ jobs:
           test -f out/revista/caligo/n002/index.html
           test -f out/revista/caligo/index.html
 
+      - name: Conectar formularios reales y suscripciones
+        run: node scripts/wire-real-forms.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
