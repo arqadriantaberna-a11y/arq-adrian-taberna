@@ -133,6 +133,21 @@ jobs:
           cp static-site/caligo-reader.html out/revista/caligo/n001/index.html
           node scripts/add-caligo.mjs
 
+      - name: Descargar las 48 páginas y el PDF de CALIGO N.º 002
+        run: |
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/d459859c-3ff1-4d1a-8a9d-b70f49c7b95f-caligo-n002-pages.zip" -o /tmp/caligo-n002-pages.zip
+          echo "535efed210e76bb232645fc8796ae78c800e50ced492674c9787faee4fe41019  /tmp/caligo-n002-pages.zip" | sha256sum --check
+          curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/f9abe17e-8025-48ed-86d6-ad8c89f307ff-caligo-n002-pdf.zip" -o /tmp/caligo-n002-pdf.zip
+          echo "6543f990fd22a80c8daf0d7bb72fc353b882dc0235b27ab9353550d254637238  /tmp/caligo-n002-pdf.zip" | sha256sum --check
+          unzip -q /tmp/caligo-n002-pages.zip -d out
+          unzip -q /tmp/caligo-n002-pdf.zip -d out
+          test -f out/images/caligo/n002/p01.webp
+          test -f out/images/caligo/n002/p48.webp
+          test -f out/revista/caligo/n002/CALIGO_N002_web.pdf
+
+      - name: Publicar CALIGO N.º 002 y conservar archivo del N.º 001
+        run: node scripts/add-caligo-n002.mjs
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
