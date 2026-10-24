@@ -142,7 +142,7 @@ document.querySelectorAll('form[data-caligo-subscribe]').forEach(form => {
     const email = form.querySelector('input[type="email"]').value.trim();
     if (!email) return;
     const subject = encodeURIComponent('CALIGO - Solicitud de suscripción por correo');
-    const body = encodeURIComponent('Hola, quiero recibir las nuevas ediciones y novedades de CALIGO por correo electrónico.\\n\\nMi dirección es: ' + email + '\\n\\nGracias.');
+    const body = encodeURIComponent('Hola, quiero recibir las nuevas ediciones y novedades de CALIGO por correo electrónico.\n\nMi dirección es: ' + email + '\n\nGracias.');
     window.location.href = 'mailto:arq.adrian.taberna@gmail.com?subject=' + subject + '&body=' + body;
   });
 });
