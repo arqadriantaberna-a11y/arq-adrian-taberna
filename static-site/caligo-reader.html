@@ -37,6 +37,36 @@
 .caligo-reader-signup p.caligo-reader-signup-note{font:normal .75rem/1.6 Arial,Helvetica,sans-serif;color:#6e675e;max-width:530px;margin-top:14px}
 @media(max-width:760px){.caligo-reader-signup-inner{grid-template-columns:1fr;gap:35px}.caligo-reader-signup-controls{flex-direction:column;gap:0}.caligo-reader-signup-controls input{min-height:51px}.caligo-reader-signup-controls button{align-self:flex-start;min-height:48px}.caligo-reader-signup h2{font-size:2.8rem}}
 
+
+/* CALIGO: lectura en pliegos y vuelta de hoja realista en computadora. */
+.stage{position:relative;}
+.spread[data-mode="spread"]{gap:0;perspective:2400px;}
+.spread[data-mode="spread"] .sheet{position:relative;}
+.spread[data-mode="spread"] .sheet:first-child:not(.is-blank){box-shadow:-4px 12px 24px rgba(32,27,23,.13), inset -5px 0 12px rgba(0,0,0,.05);}
+.spread[data-mode="spread"] .sheet:last-child:not(.is-blank){box-shadow:4px 12px 24px rgba(32,27,23,.13), inset 5px 0 12px rgba(0,0,0,.05);}
+.spread .sheet.is-blank{background:linear-gradient(110deg,#e7ded2 0%,#f3ede3 70%,#e5dbcf 100%);display:flex;justify-content:center;align-items:center;box-shadow:0 9px 29px rgba(32,27,23,.12);}
+.blank-mark{font-family:Georgia,'Times New Roman',serif;font-size:1.1rem;letter-spacing:.45em;color:rgba(66,57,49,.18);user-select:none}
+.caligo-turn-scene{position:absolute;z-index:20;perspective:2300px;pointer-events:none;transform-style:preserve-3d;isolation:isolate}
+.caligo-turn-scene .turn-static{position:absolute;top:0;width:50%;height:100%;overflow:hidden;background:#ede6dc}
+.caligo-turn-scene .turn-left{left:0;box-shadow:-5px 13px 25px rgba(25,20,15,.17)}
+.caligo-turn-scene .turn-right{right:0;box-shadow:5px 13px 25px rgba(25,20,15,.17)}
+.caligo-turn-scene .turn-static img,.caligo-turn-scene .turn-face img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none}
+.caligo-turn-scene .turn-static .turn-empty{display:block;width:100%;height:100%;background:linear-gradient(110deg,#e7ded2,#f4eee4 70%,#e5dbcf)}
+.caligo-turn-scene .turn-leaf{position:absolute;top:0;width:50%;height:100%;transform-style:preserve-3d;transition:transform 900ms cubic-bezier(.42,.08,.2,.98);will-change:transform;z-index:3}
+.caligo-turn-scene.turn-forward .turn-leaf{left:50%;transform-origin:0% 50%;transform:rotateY(0deg)}
+.caligo-turn-scene.turn-backward .turn-leaf{left:0;transform-origin:100% 50%;transform:rotateY(0deg)}
+.caligo-turn-scene.turn-forward.is-turning .turn-leaf{transform:rotateY(-180deg)}
+.caligo-turn-scene.turn-backward.is-turning .turn-leaf{transform:rotateY(180deg)}
+.caligo-turn-scene .turn-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#f9f7f2;overflow:hidden;box-shadow:0 10px 28px rgba(30,24,18,.25)}
+.caligo-turn-scene .turn-face::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.7}
+.caligo-turn-scene.turn-forward .turn-front::after{background:linear-gradient(90deg,rgba(20,14,10,.16),transparent 29%,rgba(30,20,12,.09) 100%)}
+.caligo-turn-scene.turn-backward .turn-front::after{background:linear-gradient(270deg,rgba(20,14,10,.16),transparent 29%,rgba(30,20,12,.09) 100%)}
+.caligo-turn-scene .turn-back{transform:rotateY(180deg);box-shadow:0 8px 24px rgba(30,24,18,.23)}
+.caligo-turn-scene.turn-forward .turn-back::after{background:linear-gradient(270deg,rgba(20,14,10,.13),transparent 32%)}
+.caligo-turn-scene.turn-backward .turn-back::after{background:linear-gradient(90deg,rgba(20,14,10,.13),transparent 32%)}
+@media(max-width:760px){.spread[data-mode="spread"]{gap:0}.caligo-turn-scene{display:none}}
+@media(prefers-reduced-motion:reduce){.caligo-turn-scene,.caligo-turn-scene .turn-leaf{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -98,38 +128,157 @@
 <script>
 (()=>{
 'use strict';
-const total=48;let current=1,zoom=1,spreadMode=false;
-const pages=document.getElementById('pages'), stage=document.getElementById('stage'), num=document.getElementById('num'), prev=document.getElementById('prev'), next=document.getElementById('next'), spreadBtn=document.getElementById('spread');
+const total=48;
 const mobile=window.matchMedia('(max-width:760px)');
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+let current=1,zoom=1,spreadMode=!mobile.matches,flipping=false,turnToken=0;
+const pages=document.getElementById('pages');
+const stage=document.getElementById('stage');
+const num=document.getElementById('num');
+const prev=document.getElementById('prev');
+const next=document.getElementById('next');
+const spreadBtn=document.getElementById('spread');
 const chapters=[1,3,6,9,22,31,40,47];
 const pad=n=>String(n).padStart(2,'0');
-const path=n=>`../../../images/caligo/n001/p${pad(n)}.webp`;
+const path=n=>'../../../images/caligo/n001/p'+pad(n)+'.webp';
 const parse=()=>{const m=location.hash.match(/^#p(\d{1,2})$/);return m?Math.max(1,Math.min(total,Number(m[1]))):1};
-function draw(push=false){
-if(mobile.matches)spreadMode=false;
-current=Math.min(total,Math.max(1,current));
-if(spreadMode&&current>1&&current%2===1)current--;
-const n=spreadMode&&current>1&&current<total?2:1;
-const indices=Array.from({length:n},(_,i)=>current+i);
-pages.dataset.mode=n===2?'spread':'single';
-pages.style.setProperty('--page-scale',zoom);
-pages.innerHTML=indices.map(i=>`<div class="sheet"><img src="${path(i)}" width="1055" height="1491" alt="CALIGO número 001, página ${i} de ${total}" decoding="async"><div class="sheet-note">CALIGO · ${pad(i)} / ${total}</div></div>`).join('');
-num.textContent=n===2?`${pad(current)}–${pad(current+1)}`:pad(current);
-prev.disabled=current<=1;next.disabled=current+n-1>=total;
-spreadBtn.setAttribute('aria-pressed',String(spreadMode));spreadBtn.textContent=spreadMode?'Página individual':'Doble página';
-document.querySelectorAll('.toc [data-page]').forEach(a=>{const p=Number(a.dataset.page);const idx=chapters.filter(x=>x<=current).at(-1)||1;a.classList.toggle('is-active',p===idx);if(p===idx)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
-const url='#p'+pad(current);if(push)history.pushState(null,'',url);else history.replaceState(null,'',url);
-stage.scrollLeft=0;stage.scrollTop=0;
+const pageRatio=path(1).includes('/n002/')?'1024 / 1536':'1055 / 1491';
+const pair=n=>!spreadMode?[n]:n===1?[0,1]:n===total?[total,0]:[n,n+1];
+const sheet=n=>n===0
+  ?'<div class="sheet is-blank" aria-hidden="true" style="aspect-ratio:'+pageRatio+'"><span class="blank-mark">CALIGO</span></div>'
+  :'<div class="sheet"><img src="'+path(n)+'" width="1055" height="1491" alt="CALIGO número 001, página '+n+' de '+total+'" decoding="async" draggable="false"><div class="sheet-note">CALIGO · '+pad(n)+' / '+total+'</div></div>';
+const stillImage=n=>n>0?'<img src="'+path(n)+'" alt="" draggable="false">':'<span class="turn-empty" aria-hidden="true"></span>';
+function preload(n){
+  if(n<=0||n>total)return Promise.resolve();
+  return new Promise(resolve=>{
+    const image=new Image();
+    image.onload=image.onerror=resolve;
+    image.src=path(n);
+    if(image.complete)resolve();
+  });
 }
-prev.addEventListener('click',()=>{current-=spreadMode&&current>2?2:1;draw(true)});
-next.addEventListener('click',()=>{current+=spreadMode&&current>1?2:1;draw(true)});
-spreadBtn.addEventListener('click',()=>{spreadMode=!spreadMode;draw(false)});
-document.getElementById('more').addEventListener('click',()=>{zoom=Math.min(2.3,Math.round((zoom+.25)*100)/100);draw(false)});
-document.getElementById('less').addEventListener('click',()=>{zoom=Math.max(.6,Math.round((zoom-.25)*100)/100);draw(false)});
-document.querySelectorAll('.toc [data-page]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();current=Number(a.dataset.page);draw(true);document.getElementById('lector').scrollIntoView({block:'start',behavior:'smooth'})}));
-document.addEventListener('keydown',e=>{if(/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName||''))return;if(e.key==='ArrowRight'&&!next.disabled)next.click();else if(e.key==='ArrowLeft'&&!prev.disabled)prev.click()});
-window.addEventListener('popstate',()=>{current=parse();draw(false)});
-mobile.addEventListener('change',()=>draw(false));
+function draw(push=false){
+  if(mobile.matches)spreadMode=false;
+  current=Math.min(total,Math.max(1,current));
+  if(spreadMode&&current>1&&current%2===1)current--;
+  const indices=pair(current);
+  pages.dataset.mode=spreadMode?'spread':'single';
+  pages.style.setProperty('--page-scale',zoom);
+  pages.innerHTML=indices.map(sheet).join('');
+  num.textContent=spreadMode&&current>1&&current<total?pad(current)+'–'+pad(current+1):pad(current);
+  prev.disabled=current<=1;next.disabled=current>=total;
+  spreadBtn.setAttribute('aria-pressed',String(spreadMode));
+  spreadBtn.textContent=spreadMode?'Página individual':'Doble página';
+  document.querySelectorAll('.toc [data-page]').forEach(a=>{
+    const p=Number(a.dataset.page),idx=chapters.filter(x=>x<=current).at(-1)||1;
+    a.classList.toggle('is-active',p===idx);
+    if(p===idx)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');
+  });
+  const url='#p'+pad(current);
+  if(push)history.pushState(null,'',url);else history.replaceState(null,'',url);
+  stage.scrollLeft=0;stage.scrollTop=0;
+  if(spreadMode&&!mobile.matches){
+    const near=[current===1?2:current+2,current===1?3:current+3,current-2,current-1];
+    near.forEach(n=>{if(n>0&&n<=total)preload(n)});
+  }
+}
+function clearTurn(){
+  turnToken++;
+  stage.querySelectorAll('.caligo-turn-scene').forEach(el=>el.remove());
+  pages.style.visibility='';
+  stage.removeAttribute('aria-busy');
+  flipping=false;
+}
+async function turn(direction){
+  if(flipping)return;
+  let destination;
+  if(spreadMode&&!mobile.matches){
+    destination=direction>0?(current===1?2:Math.min(total,current+2)):
+      (current===2?1:Math.max(1,current-2));
+  }else{
+    destination=Math.min(total,Math.max(1,current+direction));
+  }
+  if(destination===current)return;
+  if(!spreadMode||mobile.matches||reduced.matches||!window.CSS||!CSS.supports('transform-style','preserve-3d')){
+    current=destination;draw(true);return;
+  }
+  const first=pages.querySelector('.sheet');
+  const visibleImg=pages.querySelector('.sheet img');
+  if(!first||!visibleImg){current=destination;draw(true);return;}
+  const bounds=first.getBoundingClientRect();
+  const imgBounds=visibleImg.getBoundingClientRect();
+  if(!bounds.width||!imgBounds.height){current=destination;draw(true);return;}
+  flipping=true;const token=++turnToken;
+  stage.setAttribute('aria-busy','true');
+  const before=pair(current),after=pair(destination),forward=direction>0;
+  const wanted=[...new Set(after.filter(Boolean))];
+  await Promise.race([
+    Promise.all(wanted.map(preload)),
+    new Promise(resolve=>setTimeout(resolve,1800))
+  ]);
+  if(token!==turnToken)return;
+  const stageBounds=stage.getBoundingClientRect();
+  const w=bounds.width,h=imgBounds.height;
+  const x=bounds.left-stageBounds.left+stage.scrollLeft;
+  const y=imgBounds.top-stageBounds.top+stage.scrollTop;
+  const scene=document.createElement('div');
+  scene.className='caligo-turn-scene '+(forward?'turn-forward':'turn-backward');
+  scene.style.cssText='left:'+x+'px;top:'+y+'px;width:'+(w*2)+'px;height:'+h+'px;';
+  const left=forward?before[0]:after[0];
+  const right=forward?after[1]:before[1];
+  const front=forward?before[1]:before[0];
+  const back=forward?after[0]:after[1];
+  scene.innerHTML=
+    '<div class="turn-static turn-left">'+stillImage(left)+'</div>'+
+    '<div class="turn-static turn-right">'+stillImage(right)+'</div>'+
+    '<div class="turn-leaf">'+
+      '<div class="turn-face turn-front">'+stillImage(front)+'</div>'+
+      '<div class="turn-face turn-back">'+stillImage(back)+'</div>'+
+    '</div>';
+  stage.appendChild(scene);
+  pages.style.visibility='hidden';
+  // Animación de hoja con dos caras: el dorso muestra la siguiente página real.
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    if(token===turnToken)scene.classList.add('is-turning');
+  }));
+  const duration=900;
+  setTimeout(()=>{
+    if(token!==turnToken)return;
+    const stationary=scene.querySelector(forward?'.turn-left':'.turn-right');
+    stationary.innerHTML=stillImage(forward?after[0]:after[1]);
+  },duration*.55);
+  setTimeout(()=>{
+    if(token!==turnToken)return;
+    current=destination;
+    draw(true);
+    clearTurn();
+  },duration+90);
+}
+prev.addEventListener('click',()=>turn(-1));
+next.addEventListener('click',()=>turn(1));
+spreadBtn.addEventListener('click',()=>{
+  if(flipping)return;
+  spreadMode=!spreadMode;draw(false);
+});
+document.getElementById('more').addEventListener('click',()=>{
+  if(flipping)return;
+  zoom=Math.min(2.3,Math.round((zoom+.25)*100)/100);draw(false);
+});
+document.getElementById('less').addEventListener('click',()=>{
+  if(flipping)return;
+  zoom=Math.max(.6,Math.round((zoom-.25)*100)/100);draw(false);
+});
+document.querySelectorAll('.toc [data-page]').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();clearTurn();current=Number(a.dataset.page);draw(true);
+  document.getElementById('lector').scrollIntoView({block:'start',behavior:'smooth'});
+}));
+document.addEventListener('keydown',e=>{
+  if(/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName||''))return;
+  if(e.key==='ArrowRight'&&!next.disabled)next.click();
+  else if(e.key==='ArrowLeft'&&!prev.disabled)prev.click();
+});
+window.addEventListener('popstate',()=>{clearTurn();current=parse();draw(false)});
+mobile.addEventListener('change',()=>{clearTurn();spreadMode=!mobile.matches;draw(false)});
 current=parse();draw(false);
 if(location.hash&&current>1)requestAnimationFrame(()=>document.getElementById('lector').scrollIntoView({block:'start'}));
 })();
