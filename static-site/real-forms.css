@@ -1,0 +1,18 @@
+
+/* Formularios reales: ajustes funcionales, sin rediseñar las secciones aprobadas. */
+.site-consent{display:flex!important;align-items:flex-start;gap:11px;margin:14px 0 0;color:inherit;font-family:Arial,Helvetica,sans-serif;font-size:.76rem!important;font-weight:400!important;line-height:1.55!important;text-transform:none!important;letter-spacing:0!important;cursor:pointer}
+.site-consent input[type="checkbox"]{appearance:auto!important;-webkit-appearance:checkbox!important;margin:3px 0 0!important;padding:0!important;width:16px!important;min-width:16px!important;height:16px!important;min-height:16px!important;flex:none!important;accent-color:#995641;cursor:pointer}
+.site-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+form.subscribe-form>.site-consent{grid-column:1/-1;grid-row:auto;align-self:start}
+form.subscribe-form>button[type="submit"]{grid-column:2;grid-row:1}
+form.subscribe-form>input[type="email"]{grid-column:1;grid-row:1}
+.caligo-signup-form>.site-consent,.caligo-reader-signup-form>.site-consent{margin-top:18px}
+.site-note-ok{color:#477046!important;font-weight:500}
+.site-note-error{color:#b25038!important;font-weight:500}
+.subscribe-note,.contact-form-note,.caligo-signup-note,.caligo-reader-signup-note{min-height:1.4em}
+form button[aria-busy="true"]{opacity:.6;cursor:progress}
+.contact-form>.site-consent{grid-column:1/-1}
+@media(max-width:760px){
+form.subscribe-form>input[type="email"],form.subscribe-form>button[type="submit"],form.subscribe-form>.site-consent{grid-column:1;grid-row:auto}
+.site-consent{font-size:.74rem!important}
+}
