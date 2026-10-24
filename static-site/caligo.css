@@ -27,3 +27,20 @@
 @media(max-width:980px){.caligo-section{padding:84px 0}.caligo-section .caligo-layout{grid-template-columns:minmax(0,1fr) minmax(220px,.7fr);gap:32px}.caligo-section .caligo-display{font-size:clamp(4.9rem,12vw,8rem)}.caligo-section .caligo-bottom{grid-template-columns:1fr}.caligo-section .caligo-topline{margin-bottom:34px}}
 @media(max-width:760px){.caligo-section{padding:72px 0}.caligo-section .caligo-layout{grid-template-columns:1fr;gap:46px}.caligo-section .caligo-display{font-size:clamp(4.2rem,19vw,8rem);margin-bottom:29px}.caligo-section .caligo-title{font-size:clamp(2.35rem,10vw,4rem)}.caligo-section .caligo-coverlink{max-width:330px}.caligo-section .caligo-bottom{margin-top:64px}.caligo-section .caligo-stories{grid-template-columns:1fr}.caligo-section .caligo-topline{font-size:.57rem}.caligo-section .caligo-covernote{font-size:.55rem}.caligo-section .caligo-primary,.caligo-section .caligo-secondary{width:100%}}
 @media(prefers-reduced-motion:reduce){.caligo-section .caligo-coverlink{transition:none;transform:none}}
+
+
+/* CALIGO: suscripción editorial, independiente del Newsletter. */
+.caligo-section .caligo-signup{display:grid;grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr);gap:clamp(30px,6vw,84px);margin-top:92px;padding-top:28px;border-top:1px solid #867d73;align-items:end}
+.caligo-section .caligo-signup-kicker{margin:0 0 20px;color:#935745;font-size:.61rem;letter-spacing:.18em;text-transform:uppercase}
+.caligo-section .caligo-signup-intro h3{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(2rem,3.3vw,3.5rem);line-height:1.08;letter-spacing:-.045em;margin:0 0 19px}
+.caligo-section .caligo-signup-intro>p:last-child{color:#625950;font-family:Georgia,'Times New Roman',serif;font-size:1.03rem;line-height:1.6;margin:0;max-width:470px}
+.caligo-section .caligo-signup-form label{display:block;font-size:.62rem;text-transform:uppercase;letter-spacing:.15em;margin:0 0 13px;color:#625950}
+.caligo-section .caligo-signup-controls{display:flex;align-items:stretch;border-bottom:1px solid #5d544c;gap:16px;min-height:59px}
+.caligo-section .caligo-signup-controls input{border:0;background:transparent;color:#28231f;min-width:0;flex:1;outline-offset:2px;font:normal 1.07rem Georgia,'Times New Roman',serif;padding:12px 0}
+.caligo-section .caligo-signup-controls input::placeholder{color:#82786f}
+.caligo-section .caligo-signup-controls button{border:0;background:transparent;color:#28231f;font-family:Arial,Helvetica,sans-serif;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;padding:13px 0;cursor:pointer}
+.caligo-section .caligo-signup-controls button:hover{color:#9a5643}
+.caligo-section .caligo-signup-controls button span{font-size:1rem;margin-left:9px}
+.caligo-section .caligo-signup-note{font-size:.75rem;line-height:1.6;color:#625950;margin:13px 0 0;max-width:540px}
+@media(max-width:980px){.caligo-section .caligo-signup{grid-template-columns:1fr;gap:26px;margin-top:62px}}
+@media(max-width:760px){.caligo-section .caligo-signup{margin-top:54px}.caligo-section .caligo-signup-controls{display:grid;grid-template-columns:1fr;gap:0}.caligo-section .caligo-signup-controls input{min-height:52px}.caligo-section .caligo-signup-controls button{justify-self:start;min-height:46px}.caligo-section .caligo-signup-intro h3{font-size:2.3rem}}
