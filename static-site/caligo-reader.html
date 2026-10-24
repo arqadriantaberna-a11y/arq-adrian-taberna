@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e9e6df">
+<meta name="description" content="Leé CALIGO Nº 001 (2026), revista digital independiente de arquitectura, diseño y cultura. Dirección editorial: Arq. Adrian Taberna.">
+<title>CALIGO — N.º 001 · Revista de arquitectura</title>
+<meta property="og:title" content="CALIGO — N.º 001 | ¿Para quién construimos?">
+<meta property="og:description" content="Una revista digital independiente de arquitectura, diseño y cultura. 48 páginas para mirar la arquitectura más allá de su imagen.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="../../../images/caligo/n001/p01.webp">
+<style>
+:root{color-scheme:light;--paper:#e9e6df;--ink:#28231f;--line:#bab3a9;--muted:#6e675e;--rust:#9a5643;--nav-h:69px;--page-scale:1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}button,a{font:inherit}a{color:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid var(--rust);outline-offset:3px}button:disabled{opacity:.3;cursor:default}
+.top{position:sticky;top:0;z-index:10;background:rgba(233,230,223,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4.2vw,64px);gap:20px}
+.top-brand{font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.45rem,2.7vw,2.3rem);letter-spacing:-.055em;line-height:1;text-decoration:none}.top-mid{display:flex;gap:14px;align-items:center;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}.top-actions{display:flex;gap:18px;align-items:center}.top-actions a{text-decoration:none;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid transparent;padding:9px 0}.top-actions a:hover{border-bottom-color:var(--rust)}
+.hero{padding:clamp(28px,6vw,64px) clamp(20px,5vw,80px) 35px;border-bottom:1px solid var(--line)}.eyebrow{display:flex;justify-content:space-between;gap:18px;color:var(--muted);font-size:.61rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:27px}.hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(2.9rem,7.6vw,8.5rem);line-height:.88;letter-spacing:-.061em;margin:0 0 22px;max-width:1200px}.hero p{font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.08rem,1.8vw,1.42rem);line-height:1.48;max-width:710px;color:#5e574f;margin:0}.hero-line{height:1px;background:#7c7469;margin-top:36px}
+.reader{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:80vh;max-width:1640px;margin:auto}.toc{border-right:1px solid var(--line);padding:32px 25px 80px clamp(24px,3vw,52px);position:relative}.toc-inside{position:sticky;top:calc(var(--nav-h) + 28px)}.toc-kicker{display:block;font-size:.61rem;letter-spacing:.17em;color:var(--rust);text-transform:uppercase;margin-bottom:24px}.toc a{display:grid;grid-template-columns:30px minmax(0,1fr);gap:7px;padding:13px 0;border-top:1px solid var(--line);text-decoration:none;align-items:start}.toc a:hover,.toc a.is-active{color:var(--rust)}.toc a span:first-child{font-family:Georgia,serif;font-size:1.28rem;line-height:1.1}.toc a span:last-child{font-family:Georgia,serif;font-size:.99rem;line-height:1.2}.toc a small{display:block;font:normal .58rem/1.8 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:4px}.toc-foot{margin-top:28px;color:var(--muted);font-size:.65rem;line-height:1.6}
+.viewer{min-width:0;padding:25px clamp(16px,3.5vw,60px) 90px;position:relative}.viewer-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--line)}.label{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}.viewer-tools{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.tool{border:1px solid var(--line);background:transparent;color:var(--ink);min-height:36px;padding:8px 11px;font-size:.66rem;letter-spacing:.07em}.tool:hover,.tool[aria-pressed="true"]{background:var(--ink);color:#f3f0e9;border-color:var(--ink)}.tool.icon{font-size:1.02rem;min-width:36px}.stage{width:100%;overflow:auto;scrollbar-color:#a9a096 transparent;padding:8px 0 23px}.spread{display:flex;justify-content:center;gap:13px;align-items:flex-start;width:max-content;min-width:100%;margin:auto;--single-width:650px}.sheet{width:min(calc(100vw - 360px),calc(var(--single-width) * var(--page-scale)));max-width:none;flex-shrink:0;box-shadow:0 10px 34px rgba(32,27,23,.15);background:#faf8f5}.spread[data-mode="spread"] .sheet{width:min(calc((100vw - 440px)/2),calc(var(--single-width) * .82 * var(--page-scale)))}.sheet img{display:block;width:100%;height:auto;user-select:none}.sheet-note{padding:10px 2px;text-align:center;color:var(--muted);font-size:.59rem;letter-spacing:.12em;text-transform:uppercase}.spread[data-mode="single"] .sheet{max-width:none}.bottom-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:17px;margin-top:11px}.step{display:flex;align-items:center;gap:11px;border:0;background:transparent;padding:9px 3px;font-size:.67rem;text-transform:uppercase;letter-spacing:.13em}.step:hover:not(:disabled){color:var(--rust)}.page-readout{font-family:Georgia,serif;font-size:1.08rem}.page-readout strong{font-size:1.7rem;font-weight:400}.reader-note{color:var(--muted);max-width:620px;margin:36px auto 0;font-size:.74rem;line-height:1.65;text-align:center}.reader-note a{text-decoration:underline;text-underline-offset:3px}
+.end{background:#28231f;color:#eee8df;text-align:center;padding:75px 20px}.end small{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#cbb8ab}.end h2{font:normal clamp(2.4rem,5vw,5.6rem)/1 Georgia,serif;letter-spacing:-.04em;max-width:780px;margin:25px auto}.end p{font-family:Georgia,serif;font-size:1.06rem;line-height:1.65;color:#d3c9bd;max-width:620px;margin:0 auto 24px}.end a{display:inline-block;text-decoration:none;border:1px solid #b7aaa0;padding:15px 20px;text-transform:uppercase;font-size:.67rem;letter-spacing:.15em}.end a:hover{background:#d6c7b8;color:#28231f}
+@media(max-width:1100px){.reader{grid-template-columns:215px minmax(0,1fr)}.toc{padding-left:22px;padding-right:18px}.sheet{width:min(calc(100vw - 270px),calc(630px * var(--page-scale)))}.spread[data-mode="spread"] .sheet{width:min(calc((100vw - 305px)/2),calc(500px * var(--page-scale)))}}
+@media(max-width:760px){:root{--nav-h:62px}.top{padding:0 18px}.top-mid{display:none}.top-actions{gap:13px}.top-actions a{font-size:.58rem}.hero{padding:38px 18px 27px}.eyebrow{font-size:.55rem}.hero h1{font-size:clamp(2.7rem,11vw,4.9rem)}.reader{display:block}.toc{border-right:0;border-bottom:1px solid var(--line);padding:15px 18px}.toc-inside{position:relative;top:auto}.toc-kicker{margin-bottom:8px}.toc-list{display:flex;gap:9px;overflow-x:auto;padding:7px 0 5px;scrollbar-width:thin}.toc a{min-width:180px;border:1px solid var(--line);padding:10px;gap:6px}.toc a span:last-child{font-size:.91rem}.toc-foot{display:none}.viewer{padding:22px 12px 60px}.viewer-top{padding:0 7px 14px}.viewer-tools{gap:4px}.tool{font-size:.59rem;padding:7px}.tool.icon{min-width:32px}.tool[data-tool="spread"]{display:none}.spread{justify-content:center}.sheet{width:min(calc(100vw - 35px),calc(650px * var(--page-scale)))}.spread[data-mode="spread"] .sheet{width:min(calc(100vw - 35px),calc(650px * var(--page-scale)))}.stage{padding-bottom:7px}.bottom-controls{padding:15px 7px 0}.reader-note{padding:0 10px}.end{padding:60px 18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+<a class="top-brand" href="../../../#revista" aria-label="Volver a CALIGO en Arq. Adrian Taberna">CALIGO</a>
+<div class="top-mid"><span>Arquitectura · Diseño · Cultura</span><span>—</span><span>N.º 001 / 2026</span></div>
+<div class="top-actions"><a href="../../../#revista">← Portfolio</a><a href="./CALIGO_N001_web.pdf" download>PDF ↓</a></div>
+</header>
+<section class="hero">
+<div class="eyebrow"><span>Revista de arquitectura · Edición inaugural</span><span>Dirección editorial · Arq. Adrian Taberna</span></div>
+<h1>¿Para quién construimos?</h1>
+<p>La escala humana frente a una arquitectura que muchas veces privilegia la imagen, la rentabilidad y el espectáculo. Una publicación para investigar la arquitectura más allá de su apariencia.</p>
+<div class="hero-line"></div>
+</section>
+<div class="reader" id="lector">
+<aside class="toc" aria-label="Índice de la revista">
+<div class="toc-inside">
+<span class="toc-kicker">Índice / N.º 001</span>
+<nav class="toc-list" aria-label="Secciones del número">
+<a href="#p01" data-page="1"><span>01</span><span>Portada<small>Inicio</small></span></a>
+<a href="#p03" data-page="3"><span>03</span><span>Sumario y créditos<small>Editorial</small></span></a>
+<a href="#p06" data-page="6"><span>06</span><span>¿Para quién construimos?<small>Editorial</small></span></a>
+<a href="#p09" data-page="9"><span>09</span><span>El patio no ha desaparecido. Ha cambiado de forma.<small>Investigación</small></span></a>
+<a href="#p22" data-page="22"><span>22</span><span>Cuando la vegetación se convierte en fachada.<small>Crítica</small></span></a>
+<a href="#p31" data-page="31"><span>31</span><span>La materia también construye experiencias.<small>Técnica / materiales</small></span></a>
+<a href="#p40" data-page="40"><span>40</span><span>Arquitectura antes del aire acondicionado.<small>Laboratorio CALIGO</small></span></a>
+<a href="#p47" data-page="47"><span>47</span><span>Una publicación para mirar más lejos.<small>Cierre</small></span></a>
+</nav>
+<p class="toc-foot">48 páginas · Arquitectura, diseño y cultura.<br>Publicación digital independiente.</p>
+</div>
+</aside>
+<main class="viewer" aria-label="Lector de CALIGO número 001">
+<div class="viewer-top"><span class="label">El número completo</span><div class="viewer-tools" role="group" aria-label="Opciones de lectura"><button class="tool" type="button" data-tool="spread" id="spread" aria-pressed="false">Doble página</button><button class="tool icon" type="button" data-tool="less" id="less" aria-label="Reducir imagen">−</button><button class="tool icon" type="button" data-tool="more" id="more" aria-label="Ampliar imagen">+</button></div></div>
+<div class="stage" id="stage" tabindex="0" aria-label="Páginas de CALIGO: podés desplazar la imagen para examinar los detalles"><div class="spread" id="pages" data-mode="single"></div></div>
+<div class="bottom-controls"><button class="step" id="prev" type="button">← Anterior</button><span class="page-readout" aria-live="polite"><strong id="num">01</strong><span> / 48</span></span><button class="step" id="next" type="button">Siguiente →</button></div>
+<p class="reader-note">Usá las flechas del teclado para avanzar o retroceder. Podés ampliar las páginas con <strong>+</strong> y desplazarte para leer detalles. También podés <a href="./CALIGO_N001_web.pdf" download>descargar la edición en PDF optimizado para pantalla</a>.</p>
+</main>
+</div>
+<footer class="end"><small>CALIGO · Una publicación independiente</small><h2>La arquitectura no empieza en la forma.</h2><p>Empieza en la vida que hace posible.</p><a href="../../../#revista">Volver al portfolio ↗</a></footer>
+<script>
+(()=>{
+'use strict';
+const total=48;let current=1,zoom=1,spreadMode=false;
+const pages=document.getElementById('pages'), stage=document.getElementById('stage'), num=document.getElementById('num'), prev=document.getElementById('prev'), next=document.getElementById('next'), spreadBtn=document.getElementById('spread');
+const mobile=window.matchMedia('(max-width:760px)');
+const chapters=[1,3,6,9,22,31,40,47];
+const pad=n=>String(n).padStart(2,'0');
+const path=n=>`../../../images/caligo/n001/p${pad(n)}.webp`;
+const parse=()=>{const m=location.hash.match(/^#p(\d{1,2})$/);return m?Math.max(1,Math.min(total,Number(m[1]))):1};
+function draw(push=false){
+if(mobile.matches)spreadMode=false;
+current=Math.min(total,Math.max(1,current));
+if(spreadMode&&current>1&&current%2===1)current--;
+const n=spreadMode&&current>1&&current<total?2:1;
+const indices=Array.from({length:n},(_,i)=>current+i);
+pages.dataset.mode=n===2?'spread':'single';
+pages.style.setProperty('--page-scale',zoom);
+pages.innerHTML=indices.map(i=>`<div class="sheet"><img src="${path(i)}" width="1055" height="1491" alt="CALIGO número 001, página ${i} de ${total}" decoding="async"><div class="sheet-note">CALIGO · ${pad(i)} / ${total}</div></div>`).join('');
+num.textContent=n===2?`${pad(current)}–${pad(current+1)}`:pad(current);
+prev.disabled=current<=1;next.disabled=current+n-1>=total;
+spreadBtn.setAttribute('aria-pressed',String(spreadMode));spreadBtn.textContent=spreadMode?'Página individual':'Doble página';
+document.querySelectorAll('.toc [data-page]').forEach(a=>{const p=Number(a.dataset.page);const idx=chapters.filter(x=>x<=current).at(-1)||1;a.classList.toggle('is-active',p===idx);if(p===idx)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
+const url='#p'+pad(current);if(push)history.pushState(null,'',url);else history.replaceState(null,'',url);
+stage.scrollLeft=0;stage.scrollTop=0;
+}
+prev.addEventListener('click',()=>{current-=spreadMode&&current>2?2:1;draw(true)});
+next.addEventListener('click',()=>{current+=spreadMode&&current>1?2:1;draw(true)});
+spreadBtn.addEventListener('click',()=>{spreadMode=!spreadMode;draw(false)});
+document.getElementById('more').addEventListener('click',()=>{zoom=Math.min(2.3,Math.round((zoom+.25)*100)/100);draw(false)});
+document.getElementById('less').addEventListener('click',()=>{zoom=Math.max(.6,Math.round((zoom-.25)*100)/100);draw(false)});
+document.querySelectorAll('.toc [data-page]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();current=Number(a.dataset.page);draw(true);document.getElementById('lector').scrollIntoView({block:'start',behavior:'smooth'})}));
+document.addEventListener('keydown',e=>{if(/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName||''))return;if(e.key==='ArrowRight'&&!next.disabled)next.click();else if(e.key==='ArrowLeft'&&!prev.disabled)prev.click()});
+window.addEventListener('popstate',()=>{current=parse();draw(false)});
+mobile.addEventListener('change',()=>draw(false));
+current=parse();draw(false);
+if(location.hash&&current>1)requestAnimationFrame(()=>document.getElementById('lector').scrollIntoView({block:'start'}));
+})();
+</script>
+</body></html>
