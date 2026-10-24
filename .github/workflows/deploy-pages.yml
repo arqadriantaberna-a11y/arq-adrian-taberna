@@ -64,6 +64,9 @@ jobs:
       - name: Conservar proporciones originales en Habitar el Vacío
         run: node scripts/preserve-habitar-vacio-image-ratios.mjs
 
+      - name: Retirar dos imágenes inconsistentes de Habitar el Vacío
+        run: node scripts/remove-habitar-vacio-outliers.mjs
+
       - name: Descargar nueva documentación de Habitar el Umbral
         run: |
           curl -fL --retry 3 "https://adrian-360.floot.app/_cdn/static/00c61884-01ca-423d-9308-80141b05b61d-habitar-umbral-nuevo-assets.zip" -o /tmp/habitar-umbral-assets.zip
