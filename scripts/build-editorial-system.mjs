@@ -43,7 +43,7 @@ function nextPrev(p){
 function galleryIndex(){
   return '<details class="ed-project-image-index ed-case-image-index"><summary class="ed-image-index-toggle"><span>Índice fotográfico y documentación</span><span class="ed-gallery-counter">Ver índice ↓</span></summary><div class="ed-image-index-list"></div></details>';
 }
-const projectScripts='<script>window.AT_PROJECTS='+JSON.stringify(projects)+';document.documentElement.dataset.editorialRoot="../../";</script><script src="../../editorial/editorial.js" defer></script>';
+const projectScripts='<script>window.AT_PROJECTS='+JSON.stringify(projects)+';window.AT_FURNITURE='+JSON.stringify(data.furniture||[])+';document.documentElement.dataset.editorialRoot="../../";</script><script src="../../editorial/editorial.js" defer></script>';
 for(let i=0;i<4;i++){
  const p=projects[i],match=found.find(x=>x[1]===p.id),following=found.find(x=>x.index>match.index);
  const stop=following?following.index:html.indexOf("</main>",match.index);
@@ -124,7 +124,7 @@ for(const key of ["data-caligo-subscribe","real-form-handlers","caligo-archive-b
  if(!html.includes(key))throw Error("Módulo preexistente faltante: "+key);
 }
 once("</head>",'<link rel="stylesheet" href="./editorial/editorial.css">\n</head>',"estilos portada");
-const homeScripts='<script>window.AT_PROJECTS='+JSON.stringify(projects)+';document.documentElement.dataset.editorialRoot="./";</script><script src="./editorial/editorial.js" defer></script>';
+const homeScripts='<script>window.AT_PROJECTS='+JSON.stringify(projects)+';window.AT_FURNITURE='+JSON.stringify(data.furniture||[])+';document.documentElement.dataset.editorialRoot="./";</script><script src="./editorial/editorial.js" defer></script>';
 once("</body>",homeScripts+"</body>","funcionalidad portada");
 /* Large inline images remain byte-for-byte identical, but become individually
    cacheable files instead of increasing homepage HTML transfer. */
