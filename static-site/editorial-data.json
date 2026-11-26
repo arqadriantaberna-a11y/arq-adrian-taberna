@@ -117,5 +117,35 @@
       "label": "Contacto",
       "href": "#contacto"
     }
+  ],
+  "furniture": [
+    {
+      "slug": "comoda-blanca-paraiso",
+      "title": "Cómoda Blanca Paraíso",
+      "type": "Cómoda",
+      "category": "Dormitorio",
+      "material": "Laca blanca y madera de paraíso"
+    },
+    {
+      "slug": "mesa-comedor-paraiso",
+      "title": "Mesa de comedor Paraíso",
+      "type": "Mesa de comedor",
+      "category": "Comedor",
+      "material": "Madera de paraíso y hierro negro"
+    },
+    {
+      "slug": "mesa-paraiso-blanca",
+      "title": "Mesa Paraíso Blanca",
+      "type": "Mesa de comedor",
+      "category": "Comedor",
+      "material": "Madera de paraíso y tapa blanca"
+    },
+    {
+      "slug": "cama-plataforma-biblioteca",
+      "title": "Cama Plataforma Biblioteca",
+      "type": "Cama plataforma",
+      "category": "Dormitorio",
+      "material": "Plataforma y biblioteca integrada"
+    }
   ]
 }
