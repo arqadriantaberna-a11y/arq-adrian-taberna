@@ -24,6 +24,8 @@ function setupSearch(){
  document.body.appendChild(dialog);
  const input=$("#ed-search-input",dialog),results=$(".ed-search-results",dialog);
  const entries=projectList.map(p=>({title:p.title,subtitle:p.categoryLabel+" · "+p.status,href:"proyectos/"+p.id+"/",image:p.cover}));
+ const furnitureList=Array.isArray(window.AT_FURNITURE)?window.AT_FURNITURE:[];
+ furnitureList.forEach(f=>entries.push({title:f.title,subtitle:"Diseño de mobiliario · "+f.category,href:"diseno/"+f.slug+"/",image:null}));
  entries.push({title:"Mobiliario",subtitle:"Diseño y documentación técnica",href:"#mobiliario",image:null});
  entries.push({title:"Objetos de diseño",subtitle:"Objetos y materialidad",href:"#objetos",image:null});
  entries.push({title:"CALIGO N.º 002",subtitle:"El pasado sigue construyendo · Revista",href:"revista/caligo/n002/",image:"images/caligo/n002/p01.webp"});
