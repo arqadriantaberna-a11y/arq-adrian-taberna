@@ -1,0 +1,121 @@
+{
+  "version": "2026-11",
+  "studio": "Arq. Adrián Taberna",
+  "copyright": "© Adrián Taberna",
+  "design": {
+    "paper": "#f0ece5",
+    "ink": "#24211e",
+    "muted": "#71695f",
+    "accent": "#98624d",
+    "line": "#b8ada2",
+    "maxWidth": 1500,
+    "gap": 24
+  },
+  "projects": [
+    {
+      "id": "casa-patio",
+      "title": "Casa Patio",
+      "type": "Vivienda unifamiliar",
+      "category": "residencial",
+      "categoryLabel": "Arquitectura residencial",
+      "status": "Proyecto conceptual",
+      "author": "Adrián Taberna",
+      "location": null,
+      "year": null,
+      "cover": "images/casa-patio-new/casa-07.jpeg",
+      "intro": "Una vivienda de una planta organizada alrededor de un patio central que articula luz, vegetación, recorridos y vida doméstica.",
+      "focus": "El patio organiza la distribución, las visuales y el vínculo con el exterior.",
+      "seo": "Casa Patio: proyecto conceptual de vivienda unifamiliar y documentación arquitectónica."
+    },
+    {
+      "id": "centro-ambulatorio",
+      "title": "Centro Ambulatorio",
+      "type": "Equipamiento sanitario",
+      "category": "equipamiento",
+      "categoryLabel": "Arquitectura para la salud",
+      "status": "Proyecto conceptual",
+      "author": "Adrián Taberna",
+      "location": null,
+      "year": null,
+      "cover": "images/centro-ambulatorio-new/centro-20.jpeg",
+      "intro": "Equipamiento sanitario de escala horizontal con circulaciones claras, espacios de atención y un patio ajardinado como referencia de orientación.",
+      "focus": "Organización de los recorridos asistenciales alrededor de un centro ajardinado.",
+      "seo": "Centro Ambulatorio: equipamiento de salud conceptual, plantas, cortes y visualizaciones."
+    },
+    {
+      "id": "torre-residencial",
+      "title": "Torre Residencial",
+      "type": "Vivienda colectiva en altura",
+      "category": "residencial",
+      "categoryLabel": "Arquitectura residencial",
+      "status": "Proyecto conceptual",
+      "author": "Adrián Taberna",
+      "location": null,
+      "year": null,
+      "cover": "images/torre-residencial-new/torre-08.webp",
+      "intro": "Vivienda colectiva en altura con basamento público, expansiones privadas, vegetación y un espacio común que vincula los niveles.",
+      "focus": "El trabajo sobre densidad, expansiones y basamento define la relación con la ciudad.",
+      "seo": "Torre Residencial: exploración conceptual de vivienda colectiva en altura."
+    },
+    {
+      "id": "habitar-el-umbral",
+      "title": "Habitar el Umbral",
+      "type": "Vivienda colectiva",
+      "category": "residencial",
+      "categoryLabel": "Vivienda colectiva",
+      "status": "Proyecto académico",
+      "author": "Adrián Taberna",
+      "location": null,
+      "year": null,
+      "cover": "images/habitar-umbral-new/umbral-35.webp",
+      "intro": "Proyecto de vivienda colectiva con usos comunes en planta baja, niveles residenciales, expansiones exteriores y una azotea compartida.",
+      "focus": "La planta baja común y la envolvente vegetal articulan lo individual y lo colectivo.",
+      "seo": "Habitar el Umbral: vivienda colectiva académica, documentación y paisaje."
+    },
+    {
+      "id": "habitar-el-vacio",
+      "title": "Habitar el Vacío",
+      "type": "Microequipamiento urbano",
+      "category": "equipamiento",
+      "categoryLabel": "Microequipamiento urbano",
+      "status": "Proyecto académico",
+      "author": "Adrián Taberna",
+      "location": "Almagro · Buenos Aires",
+      "year": null,
+      "cover": "images/habitar-vacio/09-frente-principal.webp",
+      "intro": "Un microequipamiento urbano que concentra lo construido en un borde para conservar el suelo y la vegetación de una reserva.",
+      "focus": "La estrategia de elevar el programa permite liberar suelo y construir una secuencia de observación.",
+      "seo": "Habitar el Vacío: proyecto académico de microequipamiento urbano en Almagro."
+    }
+  ],
+  "navigation": [
+    {
+      "label": "Arquitectura",
+      "href": "#proyectos"
+    },
+    {
+      "label": "Mobiliario",
+      "href": "#mobiliario"
+    },
+    {
+      "label": "Objetos",
+      "href": "#objetos"
+    },
+    {
+      "label": "CALIGO",
+      "href": "#revista"
+    },
+    {
+      "label": "Newsletter",
+      "href": "#cuaderno"
+    },
+    {
+      "label": "Estudio",
+      "href": "#perfil"
+    },
+    {
+      "label": "Contacto",
+      "href": "#contacto"
+    }
+  ]
+}
