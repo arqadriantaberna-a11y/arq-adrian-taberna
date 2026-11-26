@@ -162,11 +162,19 @@ jobs:
       - name: Construir portada editorial y las cinco fichas completas
         run: node scripts/build-editorial-system.mjs
 
+      - name: Publicar catálogo de mobiliario y cuatro fichas
+        run: node scripts/build-editorial-furniture.mjs
+
       - name: Validar sistema editorial y conservar todos los contenidos
         run: |
           test -f out/editorial/editorial.css
           test -f out/editorial/editorial.js
           test -f out/editorial/projects.json
+          test -f out/editorial/furniture.json
+          test -f out/diseno/index.html
+          for slug in comoda-blanca-paraiso mesa-comedor-paraiso mesa-paraiso-blanca cama-plataforma-biblioteca; do
+            test -f "out/diseno/$slug/index.html"
+          done
           test -f out/revista/caligo/n001/index.html
           test -f out/revista/caligo/n002/index.html
           for slug in casa-patio centro-ambulatorio torre-residencial habitar-el-umbral habitar-el-vacio; do
