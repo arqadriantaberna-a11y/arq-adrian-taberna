@@ -159,6 +159,23 @@ jobs:
       - name: Conectar formularios reales y suscripciones
         run: node scripts/wire-real-forms.mjs
 
+      - name: Construir portada editorial y las cinco fichas completas
+        run: node scripts/build-editorial-system.mjs
+
+      - name: Validar sistema editorial y conservar todos los contenidos
+        run: |
+          test -f out/editorial/editorial.css
+          test -f out/editorial/editorial.js
+          test -f out/editorial/projects.json
+          test -f out/revista/caligo/n001/index.html
+          test -f out/revista/caligo/n002/index.html
+          for slug in casa-patio centro-ambulatorio torre-residencial habitar-el-umbral habitar-el-vacio; do
+            test -f "out/proyectos/$slug/index.html"
+            grep -q 'editorial.css' "out/proyectos/$slug/index.html"
+          done
+          grep -q 'id="ed-work-index"' out/index.html
+          grep -q 'id="real-form-handlers"' out/index.html
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
