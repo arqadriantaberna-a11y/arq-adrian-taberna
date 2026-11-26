@@ -21,6 +21,7 @@ const furniture=items.map(p=>{
  if(!card||!card.src.startsWith("./images/editorial-inline/"))throw Error("No se encontró pieza original aprobada: "+p.title);
  return {...p,image:card.src.slice(2),alt:card.alt};
 });
+mkdirSync("out/editorial",{recursive:true});
 writeFileSync("out/editorial/furniture.json",JSON.stringify(furniture,null,2));
 function head(title,description,canonical,image,depth){
  return '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
