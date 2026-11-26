@@ -1,5 +1,6 @@
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from "node:fs";
 import {join} from "node:path";
+import {createHash} from "node:crypto";
 
 /* Transform the assembled approved website at the end of the normal build.
    Images, project geometry, CALIGO readers and contact forms are untouched. */
@@ -125,5 +126,20 @@ for(const key of ["data-caligo-subscribe","real-form-handlers","caligo-archive-b
 once("</head>",'<link rel="stylesheet" href="./editorial/editorial.css">\n</head>',"estilos portada");
 const homeScripts='<script>window.AT_PROJECTS='+JSON.stringify(projects)+';document.documentElement.dataset.editorialRoot="./";</script><script src="./editorial/editorial.js" defer></script>';
 once("</body>",homeScripts+"</body>","funcionalidad portada");
+/* Large inline images remain byte-for-byte identical, but become individually
+   cacheable files instead of increasing homepage HTML transfer. */
+const inlineDir=join(root,"images","editorial-inline");
+mkdirSync(inlineDir,{recursive:true});
+let inlineCount=0,inlineBytes=0;
+html=html.replace(/src="data:image\/(webp|png|jpeg);base64,([A-Za-z0-9+/=]+)"/g,(whole,format,encoded)=>{
+  const original=Buffer.from(encoded,"base64");
+  if(original.byteLength<128)return whole;
+  const ext=format==="jpeg"?"jpg":format;
+  const filename=createHash("sha256").update(original).digest("hex").slice(0,20)+"."+ext;
+  writeFileSync(join(inlineDir,filename),original);
+  inlineCount++;inlineBytes+=encoded.length;
+  return 'src="./images/editorial-inline/'+filename+'"';
+});
 writeFileSync(path,html);
+console.log("Imágenes inline externalizadas sin recomprimir: "+inlineCount+" / "+inlineBytes+" caracteres de HTML liberados.");
 console.log("Portada aprobada preservada, nuevo índice editorial publicado, cinco proyectos disponibles.");
