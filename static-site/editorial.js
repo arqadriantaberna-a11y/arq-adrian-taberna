@@ -57,7 +57,11 @@ function setupArchive(){
  const drawer=$(".ed-full-archive");if(!drawer)return;
  const openHash=()=>{
   const id=decodeURIComponent(location.hash.slice(1));
-  if(id&&$$( "#"+CSS.escape(id),drawer).length)drawer.open=true;
+  const target=id?document.getElementById(id):null;
+  if(target&&drawer.contains(target)){
+    drawer.open=true;
+    requestAnimationFrame(()=>target.scrollIntoView({behavior:reduced?"auto":"smooth",block:"start"}));
+  }
  };
  window.addEventListener("hashchange",openHash);openHash();
  $$(".ed-full-archive .project").forEach(p=>{
