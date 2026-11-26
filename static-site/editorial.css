@@ -218,3 +218,23 @@ html{scroll-behavior:auto!important}
 .ed-motion-ready .ed-reveal{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ed-ease),transform .75s var(--ed-ease)}
 .ed-motion-ready .ed-reveal.ed-in-view{opacity:1;transform:translateY(0)}
 }
+
+
+/* Selected furniture archive. The images are byte-identical to the original cards. */
+.ed-furniture-catalogue-link{display:inline-flex;gap:15px;align-items:center;color:var(--ed-ink)!important;text-decoration:none!important;border-bottom:1px solid currentColor;padding-bottom:8px;font:500 .65rem Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.ed-furniture-catalogue-link:hover{color:var(--ed-accent)!important}
+.ed-furniture-page .ed-case-intro h1{font-size:clamp(4rem,8.5vw,10rem)}
+.ed-furniture-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(52px,7vw,115px) clamp(22px,4vw,70px);padding:12px 0 clamp(70px,9vw,145px)}
+.ed-furniture-card{min-width:0}
+.ed-furniture-image{display:block;position:relative;overflow:hidden;background:#e8e2d8;aspect-ratio:1.13/1}
+.ed-furniture-image img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .9s var(--ed-ease)}
+.ed-furniture-image:hover img{transform:scale(1.035)}
+.ed-furniture-card h2{font:400 clamp(2rem,3.5vw,4.25rem)/1.09 Georgia,serif;letter-spacing:-.052em;margin:22px 0 14px}
+.ed-furniture-card h2 a{text-decoration:none;color:var(--ed-ink)}
+.ed-furniture-card h2 a:hover{color:var(--ed-accent)}
+.ed-furniture-card p{font:400 1.13rem/1.5 Georgia,serif;color:var(--ed-muted);margin:0 0 15px}
+.ed-product-template .ed-case-intro h1{font-size:clamp(3.6rem,7vw,8.4rem);overflow-wrap:break-word}
+.ed-product-template .ed-case-image{margin:0 auto;max-width:1100px;background:#e8e2d8}
+.ed-product-template .ed-case-image img{max-height:83vh}
+@media(max-width:800px){.ed-furniture-grid{grid-template-columns:1fr;gap:65px}.ed-furniture-note{display:block}.ed-furniture-catalogue-link{margin-top:22px;white-space:normal}}
+@media(prefers-reduced-motion:reduce){.ed-furniture-image img{transition:none!important;transform:none!important}}
