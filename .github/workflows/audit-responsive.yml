@@ -1,0 +1,46 @@
+name: Auditar responsive y navegación del portfolio
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Publicar sitio en GitHub Pages"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  browser-audit:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Obtener código de auditoría
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar controlador liviano para el Chrome del runner
+        run: |
+          mkdir -p /tmp/adri-responsive-deps
+          npm install --prefix /tmp/adri-responsive-deps --no-save --no-package-lock --no-audit --ignore-scripts playwright-core@1.56.1
+          command -v google-chrome-stable || command -v google-chrome || command -v chromium || command -v chromium-browser
+
+      - name: Medir 390, 768 y 1440 px con navegador real
+        env:
+          NODE_PATH: /tmp/adri-responsive-deps/node_modules
+          AUDIT_OUTPUT: ${{ github.workspace }}/responsive-audit
+        run: node scripts/audit-responsive.cjs
+
+      - name: Conservar capturas y reporte técnico
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: responsive-390-768-1440
+          path: responsive-audit/
+          retention-days: 30
+          if-no-files-found: warn
