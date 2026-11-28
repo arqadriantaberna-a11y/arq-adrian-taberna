@@ -168,9 +168,14 @@ jobs:
       - name: Optimizar carga inicial de galerías sin modificar imágenes
         run: node scripts/optimize-home-payload.mjs
 
+      - name: Crear variantes responsive a partir de imágenes originales
+        run: node scripts/build-responsive-images.mjs
+
       - name: Comprobar JS externo y peso de portada
         run: |
           node --check out/editorial/legacy-home.js
+          test -f out/images/editorial-responsive/portada-casa-patio-w480.webp
+          grep -q 'srcset=' out/index.html
           test -s out/editorial/legacy-home.js
           test -f out/images/editorial-inline/cad79fbeb6d4604bdbdb.webp
           test "$(wc -c < out/index.html)" -lt 350000
