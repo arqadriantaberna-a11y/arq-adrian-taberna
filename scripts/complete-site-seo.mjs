@@ -59,7 +59,9 @@ for(const filename of files.sort()){
  let html=readFileSync(filename,"utf8");
  const pathname=pathFor(filename);
  if(!html.includes("</head>")||!/<html\b/i.test(html))throw Error("Documento incompleto: "+filename);
- const url=base+pathname.slice(1);
+ const technical= /^\/(?:404|_not-found|gestion|archivo)\/$/.test(pathname);
+ const legacyFurniture=pathname.match(/^\/mobiliario\/([a-z0-9-]+)\/$/);
+ const url=legacyFurniture?base+"diseno/"+legacyFurniture[1]+"/":base+pathname.slice(1);
  const title=html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.replace(/<[^>]+>/g,"").trim();
  if(!title)throw Error("Documento sin título: "+pathname);
  const description=findMeta(html,"name","description");
@@ -77,8 +79,10 @@ for(const filename of files.sort()){
  if(!findMeta(html,"property","og:description"))html=updateMeta(html,"property","og:description",description);
  if(!findMeta(html,"property","og:site_name"))html=updateMeta(html,"property","og:site_name","Adrián Taberna · Arquitecto");
  if(!findMeta(html,"property","og:locale"))html=updateMeta(html,"property","og:locale","es_AR");
+ if(technical)html=updateMeta(html,"name","robots",
+  pathname==="/gestion/"?"noindex, nofollow, noarchive":"noindex, follow");
  writeFileSync(filename,html);
- pages.push({pathname,url,image});
+ if(!technical&&!legacyFurniture)pages.push({pathname,url,image});
 }
 const expected=[
  "/","/diseno/","/revista/caligo/","/revista/caligo/n001/","/revista/caligo/n002/",
