@@ -114,8 +114,13 @@ async function main(){
       result.legacyScriptExternal=await page.locator('script[src="./editorial/legacy-home.js"]').count()===1;
       if(!result.legacyScriptExternal)issues.push("Falta controlador de galerías optimizado a "+view.width);
       await page.locator(".hero-arrow-next").click({timeout:5000});
-      result.carouselTitle=(await page.locator(".hero-copy h1").innerText()).trim();
-      if(result.carouselTitle!=="Centro Ambulatorio")issues.push("Carrusel principal no avanzó a "+view.width+": "+result.carouselTitle);
+      try{
+       await page.waitForFunction(()=>document.querySelector(".hero-copy h1")?.textContent?.trim()==="Centro Ambulatorio",null,{timeout:2500});
+       result.carouselTitle=(await page.locator(".hero-copy h1").textContent()).trim();
+      }catch{
+       result.carouselTitle=(await page.locator(".hero-copy h1").textContent()).trim();
+       issues.push("Carrusel principal no avanzó a "+view.width+": "+result.carouselTitle);
+      }
       if(view.width===390||view.width===1440){
        for(const [gallery,expected] of [["mesa-paraiso",6],["comoda-blanca-paraiso",6],["mesa-paraiso-blanca",6],["cama-plataforma-biblioteca",6]]){
         const card=page.locator('.design-card[data-gallery="'+gallery+'"]');
