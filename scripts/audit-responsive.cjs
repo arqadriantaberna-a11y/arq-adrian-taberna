@@ -109,6 +109,38 @@ async function main(){
       result.contactForm=await page.locator("form.contact-form").count();
       result.caligoForm=await page.locator("form[data-caligo-subscribe]").count();
       if(result.newsletterForm!==1||result.contactForm!==1||result.caligoForm!==1)issues.push("Formularios faltantes a "+view.width);
+      // The original hero carousel and furniture gallery must survive extraction
+      // of large base64 files from the inline JavaScript controller.
+      result.legacyScriptExternal=await page.locator('script[src="./editorial/legacy-home.js"]').count()===1;
+      if(!result.legacyScriptExternal)issues.push("Falta controlador de galerías optimizado a "+view.width);
+      await page.locator(".hero-arrow-next").click({timeout:5000});
+      result.carouselTitle=(await page.locator(".hero-copy h1").innerText()).trim();
+      if(result.carouselTitle!=="Centro Ambulatorio")issues.push("Carrusel principal no avanzó a "+view.width+": "+result.carouselTitle);
+      if(view.width===390||view.width===1440){
+       for(const [gallery,expected] of [["mesa-paraiso",6],["comoda-blanca-paraiso",6],["mesa-paraiso-blanca",6],["cama-plataforma-biblioteca",6]]){
+        const card=page.locator('.design-card[data-gallery="'+gallery+'"]');
+        if(!await card.count()){issues.push("No existe tarjeta de galería "+gallery);continue;}
+        await card.click({timeout:10000});
+        const modal=page.locator("#furniture-dialog");
+        const open=await modal.evaluate(el=>el.open);
+        const initialDots=await modal.locator(".furniture-dialog-dot").count();
+        const picture=modal.locator("img").first();
+        const initialSrc=await picture.getAttribute("src");
+        if(!open||initialDots!==expected||!initialSrc){
+         issues.push("Galería "+gallery+" no abrió correctamente a "+view.width);
+        }else{
+         await modal.locator(".furniture-dialog-arrow-next").click({timeout:5000});
+         const nextSrc=await picture.getAttribute("src");
+         if(!nextSrc||nextSrc===initialSrc)issues.push("Galería "+gallery+" no cambió de imagen a "+view.width);
+         else {
+          try{
+           await page.waitForFunction(()=>{const im=document.querySelector('#furniture-dialog img');return !!im&&im.complete&&im.naturalWidth>0;},{},{timeout:10000});
+          }catch{issues.push("No se cargó la imagen original de "+gallery+" a "+view.width);}
+         }
+        }
+        await modal.locator(".furniture-dialog-close").click({timeout:5000});
+       }
+      }
      }
      if(id.startsWith("caligo-0")){
       const next=page.locator("#next");
