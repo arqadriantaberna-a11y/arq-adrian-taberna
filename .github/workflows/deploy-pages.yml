@@ -184,6 +184,19 @@ jobs:
           grep -q 'id="ed-work-index"' out/index.html
           grep -q 'id="real-form-handlers"' out/index.html
 
+      - name: Completar SEO de todas las páginas y publicar sitemap
+        run: node scripts/complete-site-seo.mjs
+
+      - name: Verificar metadatos SEO y archivos de indexación
+        run: |
+          test -s out/robots.txt
+          test -s out/sitemap.xml
+          grep -q 'rel="canonical"' out/index.html
+          grep -q 'property="og:url"' out/index.html
+          grep -q 'property="og:image"' out/index.html
+          grep -q 'urlset' out/sitemap.xml
+          grep -q 'revista/caligo/n002/' out/sitemap.xml
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
         with:
