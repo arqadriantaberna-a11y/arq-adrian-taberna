@@ -238,3 +238,15 @@ html{scroll-behavior:auto!important}
 .ed-product-template .ed-case-image img{max-height:83vh}
 @media(max-width:800px){.ed-furniture-grid{grid-template-columns:1fr;gap:65px}.ed-furniture-note{display:block}.ed-furniture-catalogue-link{margin-top:22px;white-space:normal}}
 @media(prefers-reduced-motion:reduce){.ed-furniture-image img{transition:none!important;transform:none!important}}
+
+
+/* Cierre del menú en móvil y tablet: el panel fijo no debe tapar su resumen.
+   No cambia la composición visual ni los materiales originales. */
+@media(max-width:980px){
+  .site-nav .mobile-menu > summary{
+    position:relative;
+    z-index:100;
+    pointer-events:auto;
+  }
+  .site-nav .mobile-menu[open] .mobile-panel{z-index:50}
+}
