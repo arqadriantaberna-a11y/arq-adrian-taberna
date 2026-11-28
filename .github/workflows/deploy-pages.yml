@@ -165,6 +165,21 @@ jobs:
       - name: Publicar catálogo de mobiliario y cuatro fichas
         run: node scripts/build-editorial-furniture.mjs
 
+      - name: Optimizar carga inicial de galerías sin modificar imágenes
+        run: node scripts/optimize-home-payload.mjs
+
+      - name: Comprobar JS externo y peso de portada
+        run: |
+          node --check out/editorial/legacy-home.js
+          test -s out/editorial/legacy-home.js
+          test -f out/images/editorial-inline/cad79fbeb6d4604bdbdb.webp
+          test "$(wc -c < out/index.html)" -lt 350000
+          grep -q 'src="./editorial/legacy-home.js"' out/index.html
+          if grep -q 'data:image/webp;base64' out/index.html; then
+            echo "Quedaron imágenes inline sin extraer" >&2
+            exit 1
+          fi
+
       - name: Validar sistema editorial y conservar todos los contenidos
         run: |
           test -f out/editorial/editorial.css
